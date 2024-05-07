@@ -10,10 +10,20 @@ export default {
 
 <template>
   <AppHeader></AppHeader>
-  <AppMain></AppMain>
+  <AppMain ></AppMain>
   <AppFooter></AppFooter>
 </template>
 
 <style lang="scss">
 @import url("../src/styles/general.scss");
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
 </style>
