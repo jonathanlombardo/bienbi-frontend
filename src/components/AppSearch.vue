@@ -19,7 +19,7 @@ import TomTomSearchbox from './TomTomSearchbox.vue';
                         <!-- barra di ricerca -->
                         <TomTomSearchbox></TomTomSearchbox>
                     </div>
-                    <router-link :to="{ name: 'ricerca-avanzata'}">
+                    <router-link :to="{ name: 'ricerca-avanzata',  params: { position: returnAddress.position } }">
                         <div class="btn btn-primary">ricerca avanzata</div>
                     </router-link>
                   </form>
