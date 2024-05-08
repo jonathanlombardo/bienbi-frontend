@@ -34,9 +34,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-3" v-for="appartment in store.sponsoredAppartments">
-                    <router-link class="text-decoration-none">
-                        <AppCard :appartment="appartment"></AppCard>
-                    </router-link>
+                    <AppCard :appartment="appartment"></AppCard>
                 </div>
             </div>
         </div>
