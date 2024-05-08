@@ -62,12 +62,13 @@
   width: 100px;
   border-radius: 10px;
   font-weight: bold;
-}
+  transition: transform 0.5s;
 
-.my_btn:hover {
-  background-color: #f34e39;
-  transform: scale(1.1);
-  box-shadow: 2px 3px 12px #f34e39;
+  &:hover {
+    background-color: #f34e39;
+    transform: scale(1.1);
+    box-shadow: 2px 3px 12px #f34e39;
+  }
 }
 
 </style>
