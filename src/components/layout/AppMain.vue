@@ -32,7 +32,7 @@
     <AppSearch></AppSearch>
     <main class="my-5">
         <div class="container">
-            <div class="row g-2 ">
+            <div class="row g-4">
                 <div class="col-3" v-for="appartment in store.sponsoredAppartments">
                     <router-link :to="{ name: 'detail', params: { id: appartment.id } }" class="text-decoration-none">
                         <AppCard :appartment="appartment"></AppCard>
