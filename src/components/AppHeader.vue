@@ -10,12 +10,12 @@
             <img src="/img/logo-bienbi.png" alt="logo">
           </div>
           <div>
-              <button type="button" class="btn my_btn mx-1">Login</button>
-              <button type="button" class="btn my_btn mx-1">Register</button>
+              <button type="button" class="btn my_btn mx-1">Accedi</button>
+              <button type="button" class="btn my_btn mx-1">Registrati</button>
           </div>
       </div>
     </section>
- </header>
+  </header>
 </template>
 
 <style lang="scss">
