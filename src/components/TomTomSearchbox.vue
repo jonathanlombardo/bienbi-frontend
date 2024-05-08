@@ -55,7 +55,9 @@ export default {
 </script>
 
 <template>
-  <div id="tomtom-searchbox"></div>
+  <div id="tomtom-searchbox" class="w-100">
+    
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

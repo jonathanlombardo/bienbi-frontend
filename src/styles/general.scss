@@ -5,3 +5,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+::selection {
+  background: rgba(236, 170, 15, 0.24);
+}

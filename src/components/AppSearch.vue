@@ -1,22 +1,25 @@
 <script>
+import TomTomSearchbox from './TomTomSearchbox.vue';
 
+ export default {
+        components: { TomTomSearchbox}
+    };
 
-    export default {
-        
-    }
+ 
 </script>
 
 <template>
     <section class="jumbo p-5">
         <div>
             <h1 class="display-3">Scegli la tua prossima <span class="coloring-text">meta</span></h1>
+            
             <form action="">
-            <div class="input-group my-5">
-                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                <!-- barra di ricerca -->
-                <input type="text" class="form-control" placeholder="Cerca" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            </form>
+                <div class="input-group my-5">
+                
+                    <!-- barra di ricerca -->
+                    <TomTomSearchbox></TomTomSearchbox>
+                </div>
+              </form>
         </div>
         
         <div class="gap-2">
