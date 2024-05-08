@@ -11,7 +11,7 @@
             }
         },
 
-        components: { AppSearch,AppCard },
+        components: { AppSearch,AppCard, },
 
         methods: {
             fetchSponsoredAppartment(endpoint = api.baseUrl + 'appartments') {
@@ -34,7 +34,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-3" v-for="appartment in store.sponsoredAppartments">
-                    <router-link :to="{ name: 'detail', params: { id: appartment.id } }" class="text-decoration-none">
+                    <router-link class="text-decoration-none">
                         <AppCard :appartment="appartment"></AppCard>
                     </router-link>
                 </div>

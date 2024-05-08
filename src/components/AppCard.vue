@@ -1,5 +1,6 @@
 <script>
     import axios from 'axios';
+   
 
     export default {
         
@@ -28,7 +29,7 @@
 </template>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
     span {
         opacity: 0.6;
     }
