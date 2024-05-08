@@ -10,8 +10,8 @@
             <img src="/img/logo-bienbi.png" alt="logo">
           </div>
           <div>
-              <button type="button" class="btn my_btn mx-1">Accedi</button>
-              <button type="button" class="btn my_btn mx-1">Registrati</button>
+              <button type="button" class="my_btn mx-1">Accedi</button>
+              <button type="button" class="my_btn mx-1">Registrati</button>
           </div>
       </div>
     </section>
