@@ -66,6 +66,7 @@
     background-color: #f34e39;
     transform: scale(1.1);
     box-shadow: 2px 3px 12px #f34e39;
+    color: #fff;
   }
 }
 

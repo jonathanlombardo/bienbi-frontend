@@ -30,4 +30,16 @@ export default {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+
+.form-range::-moz-range-thumb{
+    background-color: #ffb30e; 
+}
+
+.form-range::-moz-range-thumb:hover{
+    box-shadow: 2px 3px 12px #f34e39; 
+    color: #ffb30e;
+}
+
+
+</style>

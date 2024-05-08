@@ -34,7 +34,7 @@ export default {
 						params: { position: address.position },
 					}"
 				>
-					<div class="btn btn-primary">ricerca avanzata</div>
+					<div class="btn my_btn w-25">ricerca avanzata</div>
 				</router-link>
 			</form>
 		</div>
@@ -71,4 +71,23 @@ export default {
 h1 {
 	font-weight: bold;
 }
+
+.my_btn {
+	font-size: 0.9rem;
+	text-align: center;
+	background-color: #ffb30e;
+	padding: 6px 10px;
+	border: none;
+	width: 100px;
+	border-radius: 10px;
+	font-weight: bold;
+	transition: transform 0.5s;
+  
+	&:hover {
+	  background-color: #f34e39;
+	  transform: scale(1.1);
+	  box-shadow: 2px 3px 12px #f34e39;
+	  color: #fff;
+	}
+  }
 </style>
