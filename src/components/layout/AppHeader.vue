@@ -21,9 +21,7 @@
 <style lang="scss">
 
 .header-fixed{
-  position: fixed;
-  left: 0;
-  right: 0;
+  position: sticky;
   top: 0;
   z-index: 9999;
   background-color: #fff;
