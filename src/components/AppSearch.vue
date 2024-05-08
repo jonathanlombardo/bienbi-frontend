@@ -16,11 +16,16 @@ import TomTomSearchbox from './TomTomSearchbox.vue';
                     <div class="input-group my-5">
                     
                         <!-- barra di ricerca -->
-                        <TomTomSearchbox></TomTomSearchbox>
+                        <TomTomSearchbox @returnAddress="emitAddress"></TomTomSearchbox>
                     </div>
+                    <router-link :to="{ name: 'ricerca-avanzata'}">
+                        <div class="btn btn-primary">ricerca avanzata</div>
+                    </router-link>
                 </form>
                 <img src="/img/prossima_meta.png" alt="casa">
             </div>
+
+            
             
          
         </div>
