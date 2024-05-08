@@ -5,22 +5,27 @@ export default {
   props: {
     appartment: Object,
   },
-  emits: ["showDetail"],
 };
 </script>
 
 <template>
-  <div class="card h-100 my_card" @click="$emit('showDetail')">
-    <img :src="appartment.imgUrl" class="card-img-top" alt="" />
-    <div class="card-body">
-      <h5 class="card-title pb-3">{{ appartment.title }}</h5>
-      <span class="card-text">{{ appartment.address }}</span>
-      <!-- <div class="mt-3"><strong>Stanze: </strong>{{ appartment.rooms > 1 ? appartment.rooms : 'Una stanza' }}</div>
+  <router-link
+    :to="{ name: 'appartmentDetails', params: { appartmentId: appartment.id } }"
+  >
+    <div class="card h-100 my_card">
+      <img :src="appartment.imgUrl" class="card-img-top" alt="" />
+      <div class="card-body">
+        <h5 class="card-title pb-3">{{ appartment.title }}</h5>
+        <span class="card-text">{{ appartment.address }}</span>
+        <!-- <div class="mt-3"><strong>Stanze: </strong>{{ appartment.rooms > 1 ? appartment.rooms : 'Una stanza' }}</div>
             <div class="mt-1"><strong>Metri quadri: </strong>{{ appartment.square_meters }}</div> -->
-      <div class="mt-4"><strong>Host: </strong>{{ appartment.user.name }}</div>
-      <div class="text-end"><strong>300€</strong> / notte</div>
+        <div class="mt-4">
+          <strong>Host: </strong>{{ appartment.user.name }}
+        </div>
+        <div class="text-end"><strong>300€</strong> / notte</div>
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <style lang="scss">

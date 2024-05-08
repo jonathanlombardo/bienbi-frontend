@@ -20,9 +20,6 @@ export default {
         console.log(store.sponsoredAppartments);
       });
     },
-    getAppartmentDetails() {
-      console.log("Questo Emit funziona");
-    },
   },
 
   created() {
@@ -37,10 +34,7 @@ export default {
     <div class="container">
       <div class="row g-4">
         <div class="col-3" v-for="appartment in store.sponsoredAppartments">
-          <AppCard
-            :appartment="appartment"
-            @showDetail="getAppartmentDetails"
-          ></AppCard>
+          <AppCard :appartment="appartment"></AppCard>
         </div>
       </div>
     </div>

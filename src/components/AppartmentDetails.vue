@@ -1,9 +1,13 @@
 <script>
-export default {};
+export default {
+  data() {
+    return { appartmentId: appartmentId };
+  },
+};
 </script>
 
 <template>
-  <section class="p-5"></section>
+  <section class="p-5">{{ appartmentId }}</section>
 </template>
 
 <style lang="scss"></style>
