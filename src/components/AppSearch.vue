@@ -11,7 +11,7 @@
         <div>
             <h1 class="display-3">Scegli la tua prossima <span class="coloring-text">meta</span></h1>
             <form action="">
-            <div class="input-group mb-3">
+            <div class="input-group my-5">
                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
                 <!-- barra di ricerca -->
                 <input type="text" class="form-control" placeholder="Cerca" aria-label="Username" aria-describedby="basic-addon1">
@@ -21,7 +21,7 @@
         
         <div class="gap-2">
             <div class="jumbo-img">
-            <img src="/img/casa-gialla.jpg" alt="casa">
+            <img src="/img/bnb.png" alt="casa">
             </div>
         </div>
     </section>
@@ -42,6 +42,10 @@
 
     .coloring-text{
         color: rgba(243, 78, 57, 1);
+    }
+
+    h1{
+        font-weight: bold;
     }
     
 </style>
