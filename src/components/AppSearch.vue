@@ -11,22 +11,20 @@ import TomTomSearchbox from './TomTomSearchbox.vue';
 <template>
     <section class="jumbo p-5">
         <div>
-            <h1 class="display-3">Scegli la tua prossima <span class="coloring-text">meta</span></h1>
+            <div class="logo-testo">
+                <form action="">
+                    <div class="input-group my-5">
+                    
+                        <!-- barra di ricerca -->
+                        <TomTomSearchbox></TomTomSearchbox>
+                    </div>
+                </form>
+                <img src="/img/prossima_meta.png" alt="casa">
+            </div>
             
-            <form action="">
-                <div class="input-group my-5">
-                
-                    <!-- barra di ricerca -->
-                    <TomTomSearchbox></TomTomSearchbox>
-                </div>
-              </form>
+         
         </div>
         
-        <div class="gap-2">
-            <div class="jumbo-img">
-            <img src="/img/bnb.png" alt="casa">
-            </div>
-        </div>
     </section>
 </template>
 
@@ -39,8 +37,12 @@ import TomTomSearchbox from './TomTomSearchbox.vue';
         margin-top: 20px;
     }
 
-    .jumbo-img img{
-        width: 250px;
+    .logo-testo {
+        display: flex;
+    }
+
+    .logo-testo img{
+        width: 200px;
     }
 
     .coloring-text{

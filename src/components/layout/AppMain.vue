@@ -11,7 +11,7 @@
             }
         },
 
-        components: { AppSearch,AppCard },
+        components: { AppSearch,AppCard, },
 
         methods: {
             fetchSponsoredAppartment(endpoint = api.baseUrl + 'appartments') {
