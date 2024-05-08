@@ -7,7 +7,7 @@
 </script>
 
 <template>
-    <section class="jumbo p-4">
+    <section class="jumbo p-5">
         <div>
             <h1 class="display-3">Scegli la tua prossima <span class="coloring-text">meta</span></h1>
             <form action="">
@@ -33,7 +33,7 @@
         display: flex;  
         background: linear-gradient(90deg, rgb(226, 199, 137) 10%, rgba(255, 179, 14, 1) 48%, rgba(243, 78, 57, 1) 97%);
         justify-content: space-around;
-        margin-top: 100px;
+        margin-top: 20px;
     }
 
     .jumbo-img img{
