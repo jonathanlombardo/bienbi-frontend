@@ -65,7 +65,7 @@ export default {
 </script>
 
 <template>
-	<section>
+	<section class="p-5">
 		<h1>Ricerca Avanzata</h1>
 
 		<div class="container">
