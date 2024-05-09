@@ -169,6 +169,8 @@ export default {
             <div v-for="service of services" class="col">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" :id="'service' + service.id" @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
+                <!-- icona servizi -->
+                <!-- <span><i :class="service.faIconClass"></i></span> -->
                 <label class="form-check-label text-nowrap" :for="'service' + service.id">{{ service.label }}</label>
               </div>
             </div>

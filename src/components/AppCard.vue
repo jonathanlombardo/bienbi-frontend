@@ -22,6 +22,9 @@ export default {
           <h5 class="card-title pb-3">{{ appartment.title }}</h5>
           <span class="card-text">{{ appartment.address }}</span>
           <div class="mt-2" v-if="appartment.distance"><strong>Distanza: </strong>{{ appartment.distance }} m</div>
+          <div>
+            <span v-for="service in appartment.services" class="d-inline-block mt-2 me-2"><i :class="service.faIconClass"></i></span>
+          </div>
           <div class="mt-4"><strong>Host: </strong>{{ appartment.user.name }}</div>
           <div class="text-end"><strong>300€</strong> / notte</div>
         </div>
