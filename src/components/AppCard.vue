@@ -16,6 +16,7 @@ export default {
       class="text-decoration-none"
     >
       <div class="card h-100 my_card">
+        <div v-if="appartment.isSponsored" class="sponsorLabel">Sponsorizzato</div>
         <img :src="appartment.imgUrl" class="card-img-top" alt="" />
         <div class="card-body">
           <h5 class="card-title pb-3">{{ appartment.title }}</h5>
@@ -38,6 +39,12 @@ span {
   border-bottom: 1px solid gray;
 }
 
+.card-img-top {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: center;
+}
+
 .my_card {
   transition: transform 0.5s;
   cursor: pointer;
@@ -45,6 +52,15 @@ span {
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  .sponsorLabel {
+    padding: 5px 15px;
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    background-color: #f4bb3d;
+    font-size: 0.8rem;
   }
 }
 
