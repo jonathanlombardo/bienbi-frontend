@@ -65,7 +65,7 @@ export default {
 </script>
 
 <template>
-	<section class="p-5">
+	<section>
 		<h1>Ricerca Avanzata</h1>
 
 		<div class="container">
@@ -79,7 +79,7 @@ export default {
 		</div>
 	</section>
 
-	<section class="p-5">
+	<section>
 		<div class="container">
 			<div class="row g-4">
 				<AppCard v-for="appartment in store.searchedAppartments" :appartment="appartment"></AppCard>
