@@ -125,7 +125,7 @@ export default {
       <div class="row">
         <div class="col p-3">
           <div class="p-3">
-            <label for="customRange1" class="form-label">Raggio: {{ radiusKm }} Km </label>
+            <label for="customRange1" class="form-label fw-bold">Raggio: {{ radiusKm }} Km </label>
           </div>
           <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000" @input="newFilter()" v-model="activeFilter.radius" />
         </div>
@@ -133,21 +133,21 @@ export default {
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/stanze.png" alt="casa" />
-            <label for="rooms" class="form-label ms-2">Stanze</label>
+            <label for="rooms" class="form-label fw-bold m-2">Stanze</label>
           </div>
           <input type="number" class="form-control" min="0" max="50" id="rooms" @input="newFilter()" v-model="activeFilter.rooms" />
         </div>
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/letti.png" alt="casa" />
-            <label for="beds" class="form-label ms-2">Letti</label>
+            <label for="beds" class="form-label fw-bold m-2">Letti</label>
           </div>
           <input type="number" class="form-control" min="0" max="50" id="beds" @input="newFilter()" v-model="activeFilter.beds" />
         </div>
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/bagni.png" alt="casa" />
-            <label for="bathrooms" class="form-label ms-2">Bagni</label>
+            <label for="bathrooms" class="form-label fw-bold m-2">Bagni</label>
           </div>
 
           <input type="number" class="form-control" min="0" max="50" id="bathrooms" @input="newFilter()" v-model="activeFilter.bathrooms" />
@@ -155,13 +155,13 @@ export default {
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/mq.png" alt="casa" />
-            <label for="square_meters" class="form-label ms-2">Metri quadri</label>
+            <label for="square_meters" class="form-label fw-bold m-2">Metri quadri</label>
           </div>
           <input type="number" class="form-control" min="0" max="1000" id="square_meters" @input="newFilter()" v-model="activeFilter.square_meters" />
         </div>
 
-        <div class="col-12">
-          <div class="row row-cols-5">
+        <div class="col-12 my-2">
+          <div class="row row-cols-5 my-3">
             <div v-for="service of services" class="col">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" :id="'service' + service.id" @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
@@ -174,7 +174,7 @@ export default {
     </div>
   </section>
 
-  <section>
+  <section class="my-5">
     <div class="container">
       <div class="row g-4">
         <AppCard v-for="appartment in store.searchedAppartments" :appartment="appartment"></AppCard>
