@@ -6,25 +6,14 @@ import { store, api } from "./store/index.js";
 import axios from "axios";
 
 export default {
-	components: { AppHeader, AppMain, AppFooter },
-	methods: {
-		fetchServices(endpoint = api.baseUrl + "services") {
-			axios.get(endpoint).then((res) => {
-				store.services = res.data;
-				console.log(store.services);
-			});
-		},
-	},
-	created() {
-		this.fetchServices();
-	},
+  components: { AppHeader, AppMain, AppFooter },
 };
 </script>
 
 <template>
-	<AppHeader></AppHeader>
-	<router-view></router-view>
-	<AppFooter></AppFooter>
+  <AppHeader></AppHeader>
+  <router-view></router-view>
+  <AppFooter></AppFooter>
 </template>
 
 <style lang="scss">
