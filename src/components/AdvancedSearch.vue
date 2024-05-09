@@ -51,28 +51,30 @@ export default {
 </script>
 
 <template>
-	<section class="p-5">
-		<h1>Ricerca Avanzata</h1>
+	<section class="p-5 jumbo d-flex flex-column">
+		<div>
+			<h1 class="text-center mb-4">Ricerca Avanzata</h1>
+		</div>
 
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<label for="customRange1" class="form-label"
-						>Example range raggio: {{ radiusKm }} Km</label
+						>Raggio: {{ radiusKm }} Km</label
 					>
 					<input
 						type="range"
 						class="form-range form-range-moz"
 						id="customRange1"
 						min="0"
-						max="1000000000"
+						max="100000000"
 						step="5000000"
 						v-model="radius"
 					/>
 				</div>
 
 				<div class="col">
-					<label for="rooms" class="form-label">rooms</label>
+					<label for="rooms" class="form-label">Stanze</label>
 					<input
 						type="number"
 						class="form-control"
@@ -81,7 +83,7 @@ export default {
 					/>
 				</div>
 				<div class="col">
-					<label for="beds" class="form-label">beds</label>
+					<label for="beds" class="form-label">Letti</label>
 					<input
 						type="number"
 						class="form-control"
@@ -90,7 +92,7 @@ export default {
 					/>
 				</div>
 				<div class="col">
-					<label for="bathrooms" class="form-label">bathrooms</label>
+					<label for="bathrooms" class="form-label">Bagni</label>
 					<input
 						type="number"
 						class="form-control"
@@ -99,7 +101,7 @@ export default {
 					/>
 				</div>
 				<div class="col">
-					<label for="square_meeters" class="form-label">square_meeters</label>
+					<label for="square_meeters" class="form-label ">Metri quadri</label>
 					<input
 						type="number"
 						class="form-control"
@@ -123,21 +125,34 @@ export default {
 </template>
 
 <style lang="scss">
+
+.jumbo {
+	display: flex;
+	background: linear-gradient(
+		90deg,
+		rgb(226, 199, 137) 10%,
+		rgba(255, 179, 14, 1) 48%,
+		rgba(243, 78, 57, 1) 97%
+	);
+	justify-content: space-around;
+	margin-top: 20px;
+}
+
 .form-range::-webkit-slider-thumb {
-	background-color: #ffb30e;
+	background-color: #f34e39;
 }
 
 .form-range::-webkit-slider-thumb:hover {
-	box-shadow: 2px 3px 12px #f34e39;
-	color: #ffb30e;
+	box-shadow: 2px 3px 12px #ffb30e;
+	color: #f34e39;
 }
 
 .form-range::-moz-range-thumb {
-	background-color: #ffb30e;
+	background-color: #f34e39;
 }
 
 .form-range::-moz-range-thumb:hover {
-	box-shadow: 2px 3px 12px #f34e39;
-	color: #ffb30e;
+	box-shadow: 2px 3px 12px #ffb30e;
+	color: #f34e39;
 }
 </style>
