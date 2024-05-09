@@ -15,8 +15,8 @@ export default {
         beds: this.$route.query.beds,
         bathrooms: this.$route.query.bathrooms,
         square_meeters: this.$route.query.square_meeters,
-		lat: this.$route.query.lat,
-		long: this.$route.query.long,
+        lat: this.$route.query.lat,
+        long: this.$route.query.long,
       },
     };
   },
@@ -70,11 +70,12 @@ export default {
         });
     },
 
-	updatePosition(address) {
-		this.activeFilter.lat = address.lat;
-		this.activeFilter.long = address.long;
-		console.log(address);
-	},
+    updatePosition(address) {
+      this.activeFilter.lat = address.lat;
+      this.activeFilter.long = address.long;
+      this.newFilter();
+      console.log(address);
+    },
   },
 
   created() {
@@ -92,9 +93,9 @@ export default {
     </div>
 
     <div class="container">
-		<div class="w-75 m-auto">
-			<TomTomSearchbox class="my-3" @returnAddress="updatePosition" @input="newFilter()"></TomTomSearchbox>
-		</div>
+      <div class="w-75 m-auto">
+        <TomTomSearchbox class="my-3" @returnAddress="updatePosition"></TomTomSearchbox>
+      </div>
       <div class="row">
         <div class="col p-3">
           <div class="p-3">
@@ -134,7 +135,6 @@ export default {
         </div>
       </div>
     </div>
-	
   </section>
 
   <section class="p-5">
