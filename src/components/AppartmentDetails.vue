@@ -40,14 +40,17 @@ export default {
               <img src="/img/stanze.png" alt="stanze" class="w-75 p-3">
               <div class="text-center"><strong>Stanze: </strong>{{ appartment.rooms }}</div>
             </div>
+
             <div class="rooms_container px-2">
               <img src="/img/letti.png" alt="letti" class="w-75 p-3">
               <div class="text-center"><strong>Letti: </strong>{{ appartment.beds }}</div>
             </div>
+
             <div class="rooms_container px-2">
               <img src="/img/bagni.png" alt="begni" class="w-75 p-3">
               <div class="text-center"><strong>Bagni: </strong>{{ appartment.bathrooms }}</div>
             </div>
+            
             <div class="rooms_container px-2">
               <img src="/img/mq.png" alt="metri quadri" class="w-75 p-3">
               <div class="text-center"><strong>Metri quadri: </strong>{{ appartment.square_meters }}</div>

@@ -21,9 +21,6 @@ export default {
           <h5 class="card-title pb-3">{{ appartment.title }}</h5>
           <span class="card-text">{{ appartment.address }}</span>
           <div class="mt-2" v-if="appartment.distance"><strong>Distanza: </strong>{{ appartment.distance }} m</div>
-
-          <!-- <div class="mt-3"><strong>Stanze: </strong>{{ appartment.rooms > 1 ? appartment.rooms : 'Una stanza' }}</div>
-            <div class="mt-1"><strong>Metri quadri: </strong>{{ appartment.square_meters }}</div> -->
           <div class="mt-4"><strong>Host: </strong>{{ appartment.user.name }}</div>
           <div class="text-end"><strong>300€</strong> / notte</div>
         </div>
