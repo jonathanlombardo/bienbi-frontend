@@ -28,45 +28,62 @@ export default {
 
 <template>
   <section class="p-5">
-    <div class="card  card_show">
+
+    <div class="container my-container">
+
       <h2 class="text-center mb-4 show_title">{{ appartment.title }}</h2>
-      <div class="d-flex flex-row">
-        <div class="w-50 me-5">
-          <img src="/img/appartment_placeholder.jpg" alt="" class="w-100 rounded">
+
+      <div class="row flex-column flex-md-row">
+
+        <div class="col-12 col-md-6 ">
+          <div class="">
+            <img src="/img/appartment_placeholder.jpg" alt="" class="w-100 rounded">
+          </div>
         </div>
-        <div class="w-50">
-          <div class="d-flex gap-3">
-            <div class="rooms_container px-2">
-              <img src="/img/stanze.png" alt="stanze" class="w-75 p-3">
-              <div class="text-center"><strong>Stanze: </strong>{{ appartment.rooms }}</div>
-            </div>
 
-            <div class="rooms_container px-2">
-              <img src="/img/letti.png" alt="letti" class="w-75 p-3">
-              <div class="text-center"><strong>Letti: </strong>{{ appartment.beds }}</div>
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-3 px-2">
+              <div class="rooms_container">
+                <img src="/img/stanze.png" alt="" class="w-100 p-3">
+                <div class="text-center"><strong>Stanze: </strong>{{ appartment.rooms }}</div>
+              </div>
             </div>
+            <div class="col-3 px-2">
+              <div class="rooms_container">
+                <img src="/img/letti.png" alt="" class="w-100 p-3">
+                <div class="text-center"><strong>Letti: </strong>{{ appartment.beds }}</div>
 
-            <div class="rooms_container px-2">
-              <img src="/img/bagni.png" alt="begni" class="w-75 p-3">
-              <div class="text-center"><strong>Bagni: </strong>{{ appartment.bathrooms }}</div>
+              </div>
             </div>
-            
-            <div class="rooms_container px-2">
-              <img src="/img/mq.png" alt="metri quadri" class="w-75 p-3">
-              <div class="text-center"><strong>Metri quadri: </strong>{{ appartment.square_meters }}</div>
+            <div class="col-3 px-2">
+              <div class="rooms_container">
+                <img src="/img/bagni.png" alt="" class="w-100 p-3">
+                <div class="text-center"><strong>Bagni: </strong>{{ appartment.bathrooms }}</div>
+
+              </div>
+            </div>
+            <div class="col-3 px-2">
+              <div class="rooms_container">
+                <img src="/img/mq.png" alt="" class="w-100 p-3">
+                <div class="text-center"><strong>mq: </strong>{{ appartment.square_meters }}</div>
+
+              </div>
             </div>
           </div>
           <div class="my-2"><strong>Indirizzo: </strong>{{ appartment.address }}</div>
+
         </div>
+
       </div>
     </div>
+    
   </section>
 </template>
 
 <style lang="scss">
-
-.card_show {
-  background-color: rgb(244, 241, 241);
+.my-container {
+  background-color: rgb(243, 243, 243);
   border: none;
   padding: 15px;
 }
@@ -84,8 +101,14 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 128px;
   border: 1px solid #c85f5f;
   margin-bottom: 10px;
+  padding: 20px;
+  max-height: 115px;
+  min-height: 115px;
+  img{
+    min-width: 60px;
+    max-width: 80px;
+  }
 }
 </style>

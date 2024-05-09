@@ -164,6 +164,7 @@ export default {
         </div>
 
         <div class="col-12 my-2">
+          <div class="form-label fw-bold m-2">Servizi</div>
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 my-3">
             <div v-for="service of services" class="col">
               <div class="form-check">
