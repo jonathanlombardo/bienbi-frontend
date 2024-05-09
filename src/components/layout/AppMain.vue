@@ -20,17 +20,10 @@ export default {
 				console.log(store.sponsoredAppartments);
 			});
 		},
-		fetchServices(endpoint = api.baseUrl + "services") {
-			axios.get(endpoint).then((res) => {
-				store.services = res.data;
-				console.log(store.services);
-			});
-		},
 	},
 
 	created() {
 		this.fetchSponsoredAppartment();
-		this.fetchServices();
 	},
 };
 </script>
