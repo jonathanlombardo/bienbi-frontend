@@ -13,7 +13,7 @@ const router = createRouter({
       component: AppMain,
     },
     {
-      path: "/ricerca-avanzata/:lat/:long",
+      path: "/ricerca-avanzata",
       name: "ricerca-avanzata",
       component: AdvancedSearch,
     },
