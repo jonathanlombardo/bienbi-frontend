@@ -10,8 +10,9 @@
           </div>
         </router-link>
         <div>
-          <a href="#" class="d-none d-md-inline text-decoration-none text-black px-2">Sei un Host di Bien-Bì?</a><button class="my_btn">Accedi qui</button>
-          <a href="#" class="d-md-none">Sei un Host?</a>
+          <a href="#" class="d-none d-md-inline text-decoration-none text-black px-2">Sei un Host di Bien-Bì?</a>
+          <a href="#" class="d-md-none text-decoration-none text-black px-2">Sei un Host?</a>
+          <button class="my_btn">Accedi qui</button>
         </div>
         <!-- MODALE PER MOBILE -->
         <!-- <button class="d-md-none btn btn-light mx-3 m-sm-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
