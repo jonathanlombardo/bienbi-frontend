@@ -10,7 +10,10 @@ export default {
 
 <template>
   <router-link
-    :to="{ name: 'appartmentDetails', params: { appartmentId: appartment.id } }"
+    :to="{
+      name: 'appartmentDetails',
+      params: { appartmentSlug: appartment.slug },
+    }"
   >
     <div class="card h-100 my_card">
       <img :src="appartment.imgUrl" class="card-img-top" alt="" />
