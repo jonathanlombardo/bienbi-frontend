@@ -8,27 +8,28 @@ export default {
 
 <template>
   <div class="col-lg-3 col-sm-6 col-12 my-4 px-5 px-sm-2">
-
-    <router-link :to="{
-      name: 'appartmentDetails',
-      params: { appartmentSlug: appartment.slug },
-    }" class="text-decoration-none">
+    <router-link
+      :to="{
+        name: 'appartmentDetails',
+        params: { appartmentSlug: appartment.slug },
+      }"
+      class="text-decoration-none"
+    >
       <div class="card h-100 my_card">
         <img :src="appartment.imgUrl" class="card-img-top" alt="" />
         <div class="card-body">
           <h5 class="card-title pb-3">{{ appartment.title }}</h5>
           <span class="card-text">{{ appartment.address }}</span>
+          <div class="mt-2" v-if="appartment.distance"><strong>Distanza: </strong>{{ appartment.distance }} m</div>
+
           <!-- <div class="mt-3"><strong>Stanze: </strong>{{ appartment.rooms > 1 ? appartment.rooms : 'Una stanza' }}</div>
             <div class="mt-1"><strong>Metri quadri: </strong>{{ appartment.square_meters }}</div> -->
-          <div class="mt-4">
-            <strong>Host: </strong>{{ appartment.user.name }}
-          </div>
+          <div class="mt-4"><strong>Host: </strong>{{ appartment.user.name }}</div>
           <div class="text-end"><strong>300€</strong> / notte</div>
         </div>
       </div>
     </router-link>
   </div>
-
 </template>
 
 <style lang="scss">
