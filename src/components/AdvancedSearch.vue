@@ -137,6 +137,7 @@ export default {
           </div>
           <input type="number" class="form-control" min="0" max="50" id="rooms" @input="newFilter()" v-model="activeFilter.rooms" />
         </div>
+
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/letti.png" alt="casa" />
@@ -144,14 +145,15 @@ export default {
           </div>
           <input type="number" class="form-control" min="0" max="50" id="beds" @input="newFilter()" v-model="activeFilter.beds" />
         </div>
+
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/bagni.png" alt="casa" />
             <label for="bathrooms" class="form-label fw-bold m-2">Bagni</label>
           </div>
-
           <input type="number" class="form-control" min="0" max="50" id="bathrooms" @input="newFilter()" v-model="activeFilter.bathrooms" />
         </div>
+
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/mq.png" alt="casa" />
@@ -231,5 +233,10 @@ export default {
 
 .servizi-img img {
   width: 40px;
+}
+
+.form-check-input:checked{
+  background-color: #f34e39;
+  border-color: #f34e39;
 }
 </style>
