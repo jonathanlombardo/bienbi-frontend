@@ -21,31 +21,45 @@ export default {
 
 <template>
 	<section class="jumbo p-5">
-		<div>
-			<h1 class="display-3">
-				Scegli la tua prossima <span class="coloring-text">meta</span>
-			</h1>
+		<div class="container">
 
-			<form action="">
-				<div class="input-group my-5">
-					<!-- barra di ricerca -->
-					<TomTomSearchbox @returnAddress="savePosition"></TomTomSearchbox>
+			<div class="row flex-wrap">
+
+				<div class="col-md-6 col-12 px-5 text-center text-md-start">
+
+					<h1 class="display-3 align-middle">
+						Scegli la tua prossima <span class="coloring-text">meta</span>
+					</h1>
+
 				</div>
 
-				<router-link v-if="lat && long"
-					:to="{
-						name: 'ricerca-avanzata',
-						params: { lat: lat, long:long },
-					}"
-				>
-					<div class="btn my_btn w-25">ricerca avanzata</div>
-				</router-link>
-			</form>
-		</div>
+				<div class="col-md-6 col-12 text-center d-flex justify-content-center align-items-center">
+					<div class="jumbo-img">
+						<img src="/img/bnb.png" alt="casa" />
+					</div>
 
-		<div class="gap-2">
-			<div class="jumbo-img">
-				<img src="/img/bnb.png" alt="casa" />
+				</div>
+
+				<div class="col-12 px-5">
+
+					<form action="">
+						<div class="input-group my-5 d-flex flex-column">
+							<!-- barra di ricerca -->
+							<TomTomSearchbox @returnAddress="savePosition"></TomTomSearchbox>
+
+							<div class="btn my_btn w-md-25 mt-3">
+								Cerca
+
+								<router-link v-if="lat && long" :to="{
+									name: 'ricerca-avanzata',
+									params: { lat: lat, long: long },
+								}">
+								</router-link>
+
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -54,12 +68,10 @@ export default {
 <style lang="scss" scoped>
 .jumbo {
 	display: flex;
-	background: linear-gradient(
-		90deg,
-		rgb(226, 199, 137) 10%,
-		rgba(255, 179, 14, 1) 48%,
-		rgba(243, 78, 57, 1) 97%
-	);
+	background: linear-gradient(90deg,
+			rgb(226, 199, 137) 10%,
+			rgba(255, 179, 14, 1) 48%,
+			rgba(243, 78, 57, 1) 97%);
 	justify-content: space-around;
 	margin-top: 20px;
 }
@@ -86,12 +98,12 @@ h1 {
 	border-radius: 10px;
 	font-weight: bold;
 	transition: transform 0.5s;
-  
+
 	&:hover {
-	  background-color: #f34e39;
-	  transform: scale(1.1);
-	  box-shadow: 2px 3px 12px #f34e39;
-	  color: #fff;
+		background-color: #f34e39;
+		transform: scale(1.1);
+		box-shadow: 2px 3px 12px #f34e39;
+		color: #fff;
 	}
-  }
+}
 </style>
