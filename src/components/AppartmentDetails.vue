@@ -54,13 +54,8 @@ export default {
             </div>
           </div>
           <div class="my-2"><strong>Indirizzo: </strong>{{ appartment.address }}</div>
-          <div class="my-2"><strong>Servizi: </strong></div>
-          <!-- <div class="my-2"><strong>Descrizione: </strong>
-            {{ appartment.slug }}
-          </div> -->
         </div>
       </div>
-      <div class="text-center my-4"><strong>Mappa</strong></div>
     </div>
   </section>
 </template>
