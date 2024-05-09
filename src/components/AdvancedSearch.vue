@@ -120,12 +120,12 @@ export default {
 
     <div class="container">
       <div class="w-75 m-auto">
-        <TomTomSearchbox class="my-3" @returnAddress="updatePosition" :inputValue="this.$route.query.address"></TomTomSearchbox>
+        <TomTomSearchbox placeholder="Cerca indirizzo" class="my-3" @returnAddress="updatePosition" :inputValue="this.$route.query.address"></TomTomSearchbox>
       </div>
       <div class="row">
         <div class="col p-3">
           <div class="p-3">
-            <label for="customRange1" class="form-label fw-bold">Raggio: {{ radiusKm }} Km </label>
+            <label for="customRange1" class="form-label fw-bold">Raggio di ricerca: {{ radiusKm }} Km </label>
           </div>
           <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000" @input="newFilter()" v-model="activeFilter.radius" />
         </div>
@@ -163,7 +163,7 @@ export default {
         </div>
 
         <div class="col-12 my-2">
-          <div class="row row-cols-5 my-3">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 my-3">
             <div v-for="service of services" class="col">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" :id="'service' + service.id" @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
