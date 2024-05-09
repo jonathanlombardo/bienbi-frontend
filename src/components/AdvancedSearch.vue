@@ -73,38 +73,55 @@ export default {
 					/>
 				</div>
 
-				<div class="col">
-					<label for="rooms" class="form-label">Stanze</label>
+				<div class="col p-3">
+                    <div class="servizi-img p-3">
+                        <img src="/img/stanze.png" alt="casa" />
+                        <label for="rooms" class="form-label">Stanze</label>
+                    </div>
 					<input
 						type="number"
 						class="form-control"
+                        min="0" max="50"
 						id="rooms"
 						v-model="searchedAppartment.rooms"
 					/>
 				</div>
-				<div class="col">
-					<label for="beds" class="form-label">Letti</label>
+				<div class="col p-3">
+                    <div class="servizi-img p-3">
+                        <img src="/img/letti.png" alt="casa" />
+                        <label for="beds" class="form-label">Letti</label>
+                    </div>
 					<input
 						type="number"
 						class="form-control"
+                        min="0" max="50"
 						id="beds"
 						v-model="searchedAppartment.beds"
 					/>
 				</div>
-				<div class="col">
-					<label for="bathrooms" class="form-label">Bagni</label>
+				<div class="col p-3">
+                    <div class="servizi-img p-3">
+                        <img src="/img/bagni.png" alt="casa" />
+                        <label for="bathrooms" class="form-label">Bagni</label>
+                    </div>
+					
 					<input
 						type="number"
 						class="form-control"
+                        min="0" max="50"
 						id="bathrooms"
 						v-model="searchedAppartment.bathrooms"
 					/>
 				</div>
-				<div class="col">
-					<label for="square_meeters" class="form-label ">Metri quadri</label>
+				<div class="col p-3">
+                    <div class="servizi-img p-3">
+                        <img src="/img/mq.png" alt="casa" />
+                        <label for="square_meeters" class="form-label ">Metri quadri</label>
+                    </div>
 					<input
 						type="number"
 						class="form-control"
+                        min="0" max="300"
 						id="square_meeters"
 						v-model="searchedAppartment.square_meeters"
 					/>
@@ -154,5 +171,13 @@ export default {
 .form-range::-moz-range-thumb:hover {
 	box-shadow: 2px 3px 12px #ffb30e;
 	color: #f34e39;
+}
+
+.servizi-img{
+    display: flex;
+}
+
+.servizi-img img{
+    width: 40px;
 }
 </style>
