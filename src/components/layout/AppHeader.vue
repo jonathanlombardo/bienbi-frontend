@@ -1,20 +1,20 @@
-<script>
-
-</script>
+<script></script>
 
 <template>
   <header id="top">
-    <section class="header-fixed container"> 
+    <section class="header-fixed container">
       <div class="banda-dinamica">
+        <router-link class="text-decoration-none" :to="{ name: 'home' }">
           <div class="logo">
-            <img src="/img/logo-bienbi.png" alt="logo">
+            <img src="/img/logo-bienbi.png" alt="logo" />
           </div>
-          <div>
-            <a href="#" class="d-none d-md-inline">Sei un Host di Bien-Bì?</a>
-            <a href="#" class="d-md-none">Sei un Host?</a>
-          </div>
-          <!-- MODALE PER MOBILE -->
-          <!-- <button class="d-md-none btn btn-light mx-3 m-sm-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        </router-link>
+        <div>
+          <a href="#" class="d-none d-md-inline">Sei un Host di Bien-Bì?</a>
+          <a href="#" class="d-md-none">Sei un Host?</a>
+        </div>
+        <!-- MODALE PER MOBILE -->
+        <!-- <button class="d-md-none btn btn-light mx-3 m-sm-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             <i class="fa-solid fa-bars"></i>
           </button>
           
@@ -45,21 +45,20 @@
 </template>
 
 <style lang="scss">
-
-.header-fixed{
+.header-fixed {
   position: sticky;
   top: 0;
   z-index: 9999;
   background-color: #fff;
 }
 
-.banda-dinamica{
+.banda-dinamica {
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .logo img{
+  .logo img {
     width: 200px;
     overflow: hidden;
     position: relative;
@@ -69,12 +68,12 @@
 
   @keyframes mymoves {
     0% {
-        right: 400px;
+      right: 400px;
     }
     100% {
-        right: 0px;
+      right: 0px;
     }
-}
+  }
 }
 
 .my_btn {
@@ -95,5 +94,4 @@
     color: #fff;
   }
 }
-
 </style>
