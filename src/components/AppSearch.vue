@@ -6,6 +6,7 @@ export default {
     return {
       lat: false,
       long: false,
+      searchError: false,
     };
   },
   components: { TomTomSearchbox },
@@ -13,7 +14,15 @@ export default {
     savePosition(address) {
       this.lat = address.lat;
       this.long = address.long;
-      console.log(address);
+      this.searchError = false;
+    },
+
+    handleSearchBtn() {
+      if (this.lat && this.long) {
+        this.$router.push({ name: "ricerca-avanzata", query: { lat: this.lat, long: this.long, radius: 10000 } });
+      } else {
+        this.searchError = true;
+      }
     },
   },
 };
@@ -37,19 +46,10 @@ export default {
           <form action="">
             <div class="input-group my-5 d-flex flex-column">
               <!-- barra di ricerca -->
-              <TomTomSearchbox @returnAddress="savePosition"></TomTomSearchbox>
+              <TomTomSearchbox @returnAddress="savePosition" class="search-box" :class="{ invalid: searchError }"></TomTomSearchbox>
+              <p class="search-box-fb mb-0" :class="{ active: searchError }">Seleziona uno tra i risultati suggeriti</p>
 
-              <div class="rounded btn my_btn w-md-25 mt-3" :class="lat && long ? 'd-none' : 'd-block'">Cerca</div>
-
-              <router-link
-                v-if="lat && long"
-                :to="{
-                  name: 'ricerca-avanzata',
-                  query: { lat: lat, long: long, radius: 1000 },
-                }"
-              >
-                <div class="rounded btn my_btn w-md-25 mt-3">Cerca</div>
-              </router-link>
+              <div @click="handleSearchBtn()" class="rounded btn my_btn w-md-25 mt-3">Cerca</div>
             </div>
           </form>
         </div>
@@ -95,5 +95,18 @@ h1 {
     box-shadow: 2px 3px 12px #f34e39;
     color: #fff;
   }
+}
+
+.search-box.invalid {
+  border: 2px solid rgb(152, 0, 0);
+}
+
+.search-box-fb {
+  display: none;
+}
+
+.search-box-fb.active {
+  color: rgb(152, 0, 0);
+  display: block;
 }
 </style>
