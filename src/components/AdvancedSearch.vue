@@ -8,7 +8,13 @@ export default {
     return {
       store,
       clock: false,
-      activeFilter: {},
+      activeFilter: {
+        radius: this.$route.query.radius,
+        rooms: this.$route.query.rooms,
+        beds: this.$route.query.beds,
+        bathrooms: this.$route.query.bathrooms,
+        square_meeters: this.$route.query.square_meeters,
+      },
     };
   },
 

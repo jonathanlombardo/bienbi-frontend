@@ -34,7 +34,7 @@ export default {
           v-if="lat && long"
           :to="{
             name: 'ricerca-avanzata',
-            query: { lat: lat, long: long, radius: 1000 },
+            query: { lat: lat, long: long, radius: 10000 },
           }"
         >
           <div class="btn my_btn w-25">ricerca avanzata</div>
