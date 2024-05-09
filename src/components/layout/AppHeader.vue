@@ -10,7 +10,7 @@
           </div>
         </router-link>
         <div>
-          <a href="#" class="d-none d-md-inline">Sei un Host di Bien-Bì?</a>
+          <a href="#" class="d-none d-md-inline text-decoration-none text-black px-2">Sei un Host di Bien-Bì?</a><button class="my_btn">Accedi qui</button>
           <a href="#" class="d-md-none">Sei un Host?</a>
         </div>
         <!-- MODALE PER MOBILE -->
