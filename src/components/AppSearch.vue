@@ -22,7 +22,7 @@ export default {
 <template>
   <section class="jumbo p-5">
     <div>
-      <h1 class="display-3">Scegli la tua prossima <span class="coloring-text">meta</span></h1>
+      <h1 class="display-3 fw-bold">Scegli la tua prossima <span class="coloring-text fw-bold">meta</span></h1>
 
       <form action="">
         <div class="input-group my-5">

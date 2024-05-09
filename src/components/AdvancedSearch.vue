@@ -79,7 +79,7 @@ export default {
 <template>
   <section class="p-5 jumbo d-flex flex-column">
     <div>
-      <h1 class="text-center mb-4">Cerca l'appartamento che fa al caso tuo</h1>
+      <h1 class="text-center mb-4 fw-bold">Cerca l'appartamento che fa al caso tuo</h1>
     </div>
 
     <div class="container">
