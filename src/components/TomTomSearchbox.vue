@@ -34,7 +34,7 @@ export default {
         lat: res.position.lat,
         long: res.position.lng,
       });
-      console.log(res)
+      // console.log(res.position)
     },
   },
 
