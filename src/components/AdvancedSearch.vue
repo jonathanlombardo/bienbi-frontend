@@ -87,6 +87,7 @@ export default {
     updatePosition(address) {
       this.activeFilter.lat = address.lat;
       this.activeFilter.long = address.long;
+      this.address = address.address;
       this.newFilter();
       console.log(address);
     },
@@ -120,7 +121,7 @@ export default {
 
     <div class="container">
       <div class="w-75 m-auto">
-        <TomTomSearchbox placeholder="Cerca indirizzo" class="my-3" @returnAddress="updatePosition" :inputValue="this.$route.query.address"></TomTomSearchbox>
+        <TomTomSearchbox :placeholder="address" class="my-3" @returnAddress="updatePosition" :inputValue="this.$route.query.address"></TomTomSearchbox>
       </div>
       <div class="row">
         <div class="col p-3">
@@ -178,6 +179,8 @@ export default {
 
   <section class="my-5">
     <div class="container">
+      <h2 v-if="store.searchedAppartments.length" class="text-center mb-5">Risultati nelle vicinanze di {{ address }}</h2>
+      <h2 v-else class="text-center mb-5">Nessun risultato con i criteri inseriti</h2>
       <div class="row g-4">
         <AppCard v-for="appartment in store.searchedAppartments" :appartment="appartment"></AppCard>
       </div>

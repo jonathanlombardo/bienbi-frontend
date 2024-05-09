@@ -6,6 +6,7 @@ export default {
     return {
       lat: false,
       long: false,
+      address: false,
       searchError: false,
     };
   },
@@ -14,12 +15,13 @@ export default {
     savePosition(address) {
       this.lat = address.lat;
       this.long = address.long;
+      this.address = address.address;
       this.searchError = false;
     },
 
     handleSearchBtn() {
       if (this.lat && this.long) {
-        this.$router.push({ name: "ricerca-avanzata", query: { lat: this.lat, long: this.long, radius: 10000 } });
+        this.$router.push({ name: "ricerca-avanzata", query: { lat: this.lat, long: this.long, radius: 10000, address: this.address } });
       } else {
         this.searchError = true;
       }
