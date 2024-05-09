@@ -47,7 +47,7 @@ export default {
 							<!-- barra di ricerca -->
 							<TomTomSearchbox @returnAddress="savePosition"></TomTomSearchbox>
 
-							<div class="btn my_btn w-md-25 mt-3" :class="(lat && long)? 'd-none':'d-block'">
+							<div class="rounded btn my_btn w-md-25 mt-3" :class="(lat && long)? 'd-none':'d-block'">
 								Cerca
 							</div>
 
@@ -55,7 +55,7 @@ export default {
 								name: 'ricerca-avanzata',
 								query: { lat: lat, long: long, radius: 1000 },
 							}">
-								<div class="btn my_btn w-md-25 mt-3">
+								<div class="rounded btn my_btn w-md-25 mt-3">
 									Cerca
 								</div>
 
@@ -99,7 +99,6 @@ h1 {
 	padding: 6px 10px;
 	border: none;
 	width: 100px;
-	border-radius: 10px;
 	font-weight: bold;
 	transition: transform 0.5s;
 
