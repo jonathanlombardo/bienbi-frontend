@@ -1,6 +1,39 @@
 <script>
+import AppCard from './AppCard.vue';
+import axios from 'axios';
+import { api, store } from '../store';
 
 export default {
+
+    data() {
+        return {
+            store,
+        }
+    },
+
+    methods: {
+        fetchSearchedAppartment(endpoint = api.baseUrl + 'appartments/filtered') {
+            const lat = this.$route.params.lat;
+            const long = this.$route.params.long;
+            axios.get(endpoint, {
+                params: {
+                    lat: lat,
+                    long: long,
+                    radius: 1000
+                }
+            }).then((res) => {
+                store.searchedAppartments = res.data;
+                console.log(res.data)
+            });
+        }
+    },
+
+    created() {
+        this.fetchSearchedAppartment();
+        console.log(this.$route.params.lat, this.$route.params.long)
+    },
+
+    components: { AppCard }
 
 
 };
@@ -10,7 +43,6 @@ export default {
 
 <template>
     <section class="p-5">
-
         <h1>Ricerca Avanzata</h1>
 
         <div class="container">
@@ -23,9 +55,16 @@ export default {
             </div>
 
         </div>
+    </section>
 
-
-
+    <section class="p-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-3" v-for="appartment in store.searchedAppartments">
+                    <AppCard :appartment="appartment"></AppCard>
+                </div>
+            </div>
+        </div>
     </section>
 </template>
 

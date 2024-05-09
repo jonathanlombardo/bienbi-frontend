@@ -4,13 +4,16 @@ import TomTomSearchbox from "./TomTomSearchbox.vue";
 export default {
 	data() {
 		return {
-			address: {},
+			lat: false,
+			long: false,
 		};
 	},
 	components: { TomTomSearchbox },
 	methods: {
-		saveAddress(address) {
-			this.address = address;
+		savePosition(address) {
+			this.lat = address.lat
+			this.long = address.long
+			console.log(address)
 		},
 	},
 };
@@ -26,12 +29,13 @@ export default {
 			<form action="">
 				<div class="input-group my-5">
 					<!-- barra di ricerca -->
-					<TomTomSearchbox @returnAddress="saveAddress()"></TomTomSearchbox>
+					<TomTomSearchbox @returnAddress="savePosition"></TomTomSearchbox>
 				</div>
-				<router-link
+
+				<router-link v-if="lat && long"
 					:to="{
 						name: 'ricerca-avanzata',
-						params: { position: address.position },
+						params: { lat: lat, long:long },
 					}"
 				>
 					<div class="btn btn-primary">ricerca avanzata</div>
