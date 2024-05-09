@@ -15,10 +15,11 @@ export default {
         rooms: this.$route.query.rooms,
         beds: this.$route.query.beds,
         bathrooms: this.$route.query.bathrooms,
-        square_meeters: this.$route.query.square_meeters,
+        square_meters: this.$route.query.square_meters,
         lat: this.$route.query.lat,
         long: this.$route.query.long,
       },
+      address: this.$route.query.address,
     };
   },
 
@@ -53,7 +54,8 @@ export default {
 
         this.services.forEach((service) => {
           const serviceId = "service" + service.id;
-          this.activeFilter[serviceId] = this.$route.query[serviceId];
+          console.log(this.$route.query[serviceId]);
+          if (this.$route.query[serviceId] === "true") this.activeFilter[serviceId] = true;
         });
       });
     },
@@ -93,6 +95,8 @@ export default {
       const serviceValue = document.getElementById(serviceLabel).checked;
       console.log(serviceValue, serviceLabel);
       this.activeFilter[serviceLabel] = serviceValue;
+      console.log(this.activeFilter.service1);
+
       this.newFilter();
     },
   },
@@ -101,7 +105,7 @@ export default {
     this.fetchSearchedAppartment();
     this.fetchServices();
 
-    // this.activeFilter.servi
+    // console.log(this.activeFilter.service1);
   },
 
   components: { AppCard, TomTomSearchbox },
@@ -116,7 +120,7 @@ export default {
 
     <div class="container">
       <div class="w-75 m-auto">
-        <TomTomSearchbox class="my-3" @returnAddress="updatePosition"></TomTomSearchbox>
+        <TomTomSearchbox class="my-3" @returnAddress="updatePosition" :inputValue="this.$route.query.address"></TomTomSearchbox>
       </div>
       <div class="row">
         <div class="col p-3">
@@ -151,9 +155,9 @@ export default {
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/mq.png" alt="casa" />
-            <label for="square_meeters" class="form-label ms-2">Metri quadri</label>
+            <label for="square_meters" class="form-label ms-2">Metri quadri</label>
           </div>
-          <input type="number" class="form-control" min="0" max="1000" id="square_meeters" @input="newFilter()" v-model="activeFilter.square_meeters" />
+          <input type="number" class="form-control" min="0" max="1000" id="square_meters" @input="newFilter()" v-model="activeFilter.square_meters" />
         </div>
 
         <div class="col-12">
