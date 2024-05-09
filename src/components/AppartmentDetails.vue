@@ -37,19 +37,19 @@ export default {
         <div class="w-50">
           <div class="d-flex gap-3">
             <div class="rooms_container px-2">
-              <img src="/img/stanze.png" alt="" class="w-100 p-3">
+              <img src="/img/stanze.png" alt="stanze" class="w-75 p-3">
               <div class="text-center"><strong>Stanze: </strong>{{ appartment.rooms }}</div>
             </div>
             <div class="rooms_container px-2">
-              <img src="/img/letti.png" alt="" class="w-100 p-3">
+              <img src="/img/letti.png" alt="letti" class="w-75 p-3">
               <div class="text-center"><strong>Letti: </strong>{{ appartment.beds }}</div>
             </div>
             <div class="rooms_container px-2">
-              <img src="/img/bagni.png" alt="" class="w-100 p-3">
+              <img src="/img/bagni.png" alt="begni" class="w-75 p-3">
               <div class="text-center"><strong>Bagni: </strong>{{ appartment.bathrooms }}</div>
             </div>
             <div class="rooms_container px-2">
-              <img src="/img/mq.png" alt="" class="w-100 p-3">
+              <img src="/img/mq.png" alt="metri quadri" class="w-75 p-3">
               <div class="text-center"><strong>Metri quadri: </strong>{{ appartment.square_meters }}</div>
             </div>
           </div>
@@ -63,7 +63,7 @@ export default {
 <style lang="scss">
 
 .card_show {
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(244, 241, 241);
   border: none;
   padding: 15px;
 }
@@ -81,9 +81,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 140px;
+  width: 128px;
   border: 1px solid #c85f5f;
   margin-bottom: 10px;
-  padding: 10px;
 }
 </style>
