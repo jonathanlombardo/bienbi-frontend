@@ -9,8 +9,9 @@
           <div class="logo">
             <img src="/img/logo-bienbi.png" alt="logo">
           </div>
-          <div class="">
-            <a href="#">Sei un Host di Bien-Bì?</a>
+          <div>
+            <a href="#" class="d-none d-md-inline">Sei un Host di Bien-Bì?</a>
+            <a href="#" class="d-md-none">Sei un Host?</a>
           </div>
           <!-- MODALE PER MOBILE -->
           <!-- <button class="d-md-none btn btn-light mx-3 m-sm-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
