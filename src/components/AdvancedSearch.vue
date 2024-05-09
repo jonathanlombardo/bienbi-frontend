@@ -45,7 +45,7 @@ export default {
         this.$router.push({ name: "ricerca-avanzata", query: query });
         this.$route.query = query;
         this.fetchSearchedAppartment();
-      }, 1500);
+      }, 800);
     },
 
     fetchServices(endpoint = api.baseUrl + "services") {
@@ -235,7 +235,7 @@ export default {
   width: 40px;
 }
 
-.form-check-input:checked{
+.form-check-input:checked {
   background-color: #f34e39;
   border-color: #f34e39;
 }
