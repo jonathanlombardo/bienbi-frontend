@@ -47,7 +47,9 @@ export default {
 							<!-- barra di ricerca -->
 							<TomTomSearchbox @returnAddress="savePosition"></TomTomSearchbox>
 
-
+							<div class="btn my_btn w-md-25 mt-3" :class="(lat && long)? 'd-none':'d-block'">
+								Cerca
+							</div>
 
 							<router-link v-if="lat && long" :to="{
 								name: 'ricerca-avanzata',
