@@ -1,13 +1,13 @@
 <script>
 export default {
   data() {
-    return { appartmentId: appartmentId };
+    return {};
   },
 };
 </script>
 
 <template>
-  <section class="p-5">{{ appartmentId }}</section>
+  <section class="p-5">{{ this.$route.params.appartmentId }}</section>
 </template>
 
 <style lang="scss"></style>
