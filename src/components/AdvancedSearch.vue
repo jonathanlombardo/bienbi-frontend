@@ -53,30 +53,32 @@ export default {
 <template>
 	<section class="p-5 jumbo d-flex flex-column">
 		<div>
-			<h1 class="text-center mb-4">Ricerca Avanzata</h1>
+			<h1 class="text-center mb-4">Cerca l'appartamento che fa al caso tuo</h1>
 		</div>
 
 		<div class="container">
 			<div class="row">
-				<div class="col">
-					<label for="customRange1" class="form-label"
-						>Raggio: {{ radiusKm }} Km</label
-					>
-					<input
-						type="range"
-						class="form-range form-range-moz"
-						id="customRange1"
-						min="0"
-						max="100000000"
-						step="5000000"
-						v-model="radius"
-					/>
-				</div>
+				<div class="col p-3">
+                    <div class="p-3">
+                        <label for="customRange1" class="form-label"
+                            >Raggio: {{ radiusKm }} Km
+						</label>
+                    </div>
+                    <input
+                        type="range"
+                        class="form-range form-range-moz mt-3"
+                        id="customRange1"
+                        min="0"
+                        max="100000000"
+                        step="5000000"
+                        v-model="radius"
+                    />
+                </div>
 
 				<div class="col p-3">
                     <div class="servizi-img p-3">
                         <img src="/img/stanze.png" alt="casa" />
-                        <label for="rooms" class="form-label">Stanze</label>
+                        <label for="rooms" class="form-label ms-2">Stanze</label>
                     </div>
 					<input
 						type="number"
@@ -89,7 +91,7 @@ export default {
 				<div class="col p-3">
                     <div class="servizi-img p-3">
                         <img src="/img/letti.png" alt="casa" />
-                        <label for="beds" class="form-label">Letti</label>
+                        <label for="beds" class="form-label ms-2">Letti</label>
                     </div>
 					<input
 						type="number"
@@ -102,7 +104,7 @@ export default {
 				<div class="col p-3">
                     <div class="servizi-img p-3">
                         <img src="/img/bagni.png" alt="casa" />
-                        <label for="bathrooms" class="form-label">Bagni</label>
+                        <label for="bathrooms" class="form-label ms-2">Bagni</label>
                     </div>
 					
 					<input
@@ -116,12 +118,12 @@ export default {
 				<div class="col p-3">
                     <div class="servizi-img p-3">
                         <img src="/img/mq.png" alt="casa" />
-                        <label for="square_meeters" class="form-label ">Metri quadri</label>
+                        <label for="square_meeters" class="form-label ms-2">Metri quadri</label>
                     </div>
 					<input
 						type="number"
 						class="form-control"
-                        min="0" max="300"
+                        min="0" max="1000"
 						id="square_meeters"
 						v-model="searchedAppartment.square_meeters"
 					/>
@@ -164,6 +166,14 @@ export default {
 	color: #f34e39;
 }
 
+.form-range::-webkit-slider-thumb:active {
+	background-color: rgb(243, 78, 57);
+}
+
+// .form-range::-webkit-slider-thumb:focus {
+// 	box-shadow: 0 0 0 3px rgba(243, 78, 57, 0.25);
+// }
+
 .form-range::-moz-range-thumb {
 	background-color: #f34e39;
 }
@@ -172,6 +182,14 @@ export default {
 	box-shadow: 2px 3px 12px #ffb30e;
 	color: #f34e39;
 }
+
+.form-range::-moz-range-thumb:active {
+	background-color: #f34e39;
+}
+
+// .form-range::-moz-range-thumb:focus {
+// 	background-color: #f34e39;
+// }
 
 .servizi-img{
     display: flex;
