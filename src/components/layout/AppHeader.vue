@@ -10,7 +10,7 @@
             <img src="/img/logo-bienbi.png" alt="logo">
           </div>
           <div class="">
-            <a href="#">Sei un Host di Bien-Bì?</a>
+            <a href="#" class="nav-link">Sei un Host di Bien-Bì? <button class="btn btn-warning">Accedi qui</button></a>
           </div>
           <!-- MODALE PER MOBILE -->
           <!-- <button class="d-md-none btn btn-light mx-3 m-sm-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
