@@ -1,11 +1,12 @@
 import { reactive } from "vue";
 
 export const api = {
-    baseUrl: 'http://127.0.0.1:8000/api/',
-}
+	baseUrl: "http://127.0.0.1:8000/api/",
+};
 
 export const store = reactive({
-    sponsoredAppartments: [],
-    appartment: {},
-    searchedAppartments: false,
-})
+	sponsoredAppartments: [],
+	appartment: {},
+	searchedAppartments: false,
+	services: [],
+});

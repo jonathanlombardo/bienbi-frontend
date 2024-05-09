@@ -43,7 +43,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-h1{
+h1 {
   font-size: 1.5rem;
   color: gray;
 }

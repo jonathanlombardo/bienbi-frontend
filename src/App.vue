@@ -1,11 +1,13 @@
 <script>
-import AppHeader from './components/layout/AppHeader.vue';
-import AppMain from './components/layout/AppMain.vue';
-import AppFooter from './components/layout/AppFooter.vue';
+import AppHeader from "./components/layout/AppHeader.vue";
+import AppMain from "./components/layout/AppMain.vue";
+import AppFooter from "./components/layout/AppFooter.vue";
+import { store, api } from "./store/index.js";
+import axios from "axios";
 
 export default {
-  components: { AppHeader, AppMain, AppFooter }
-}
+  components: { AppHeader, AppMain, AppFooter },
+};
 </script>
 
 <template>
@@ -16,6 +18,4 @@ export default {
 
 <style lang="scss">
 @import url("../src/styles/general.scss");
-
-
 </style>
