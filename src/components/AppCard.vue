@@ -16,7 +16,7 @@ export default {
       class="text-decoration-none"
     >
       <div class="card h-100 my_card">
-        <div v-if="appartment.isSponsored" class="sponsorLabel">Sponsorizzato</div>
+        <div v-if="appartment.isSponsored" class="sponsorLabel"><i class="fa-solid fa-crown"></i> sponsorizzato</div>
         <img :src="appartment.imgUrl" class="card-img-top" alt="" />
         <div class="card-body">
           <h5 class="card-title pb-3">{{ appartment.title }}</h5>
@@ -60,10 +60,11 @@ span {
   .sponsorLabel {
     padding: 5px 15px;
     position: absolute;
-    left: -5px;
+    left: 5px;
     top: 5px;
-    background-color: #f4bb3d;
+    background-color: #0000003e;
     font-size: 0.8rem;
+    color: #e4e2e2;
   }
 }
 
