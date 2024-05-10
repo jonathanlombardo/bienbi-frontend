@@ -30,9 +30,9 @@ export default {
 
 <template>
   <AppSearch></AppSearch>
-  <main class="my-5">
+  <main>
     <div class="container">
-      <h1 class="mb-5">Potrebbero interessarti...</h1>
+      <h1 class="my-4">Potrebbero interessarti...</h1>
       <div class="row g-4">
         <AppCard v-for="appartment in store.sponsoredAppartments" :appartment="appartment"></AppCard>
       </div>
@@ -41,6 +41,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+main {
+  background-image: url();
+  background-repeat: no-repeat;
+  background-size: cover
+}
+
 h1 {
   font-size: 1.5rem;
   color: gray;
