@@ -80,7 +80,7 @@ export default {
           </div>
 
           <div class="my-3">
-            <strong class="me-1">Servizi: </strong><div v-for="service in appartment.services" class="d-flex align-items-center"><span class="service_label me-1">{{ service.label }}</span><i :class="service.faIconClass" class="px-1 me-2"></i></div>
+            <strong class="me-1">Servizi: </strong><div v-for="service in appartment.services" class="d-flex align-items-center"><i :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label }}</span></div>
           </div>
         </div>
 
