@@ -5,7 +5,7 @@ import { api } from "../store";
 export default {
   data() {
     return {
-      appartment: {},
+      appartment: false,
     };
   },
   methods: {
@@ -17,19 +17,21 @@ export default {
       axios.get(endpoint).then((response) => {
         console.log(response);
         this.appartment = response.data;
+        console.log(this.appartment);
       });
     },
   },
-  mounted() {
+  created() {
     this.fetchAppartmentDetails();
+    // console.log(this.appartment);
   },
 };
 </script>
 
 <template>
-  <section class="p-5">
+  <section class="pb-4">
 
-    <div class="container my-container">
+    <div class="container my-container rounded">
 
       <h2 class="text-center mb-4 show_title">{{ appartment.title }}</h2>
 
@@ -66,13 +68,20 @@ export default {
             <div class="col-3 px-2">
               <div class="rooms_container">
                 <img src="/img/mq.png" alt="" class="w-100 p-3">
-                <div class="text-center"><strong>mq: </strong>{{ appartment.square_meters }}</div>
+                <div class="text-center"><strong>Mq: </strong>{{ appartment.square_meters }}</div>
 
               </div>
             </div>
           </div>
-          <div class="my-2"><strong>Indirizzo: </strong>{{ appartment.address }}</div>
+          <div class="my-3"><strong class="me-1">Indirizzo: </strong>{{ appartment.address }}</div>
 
+          <div class="my-3">
+            <strong class="me-1">Proprietario: </strong>{{ appartment ? appartment.user.name + ' ' + appartment.user.last_name : ''}}
+          </div>
+
+          <div class="my-3">
+            <strong class="me-1">Servizi: </strong><div v-for="service in appartment.services" class="d-flex align-items-center"><span class="service_label me-1">{{ service.label }}</span><i :class="service.faIconClass" class="px-1 me-2"></i></div>
+          </div>
         </div>
 
       </div>
@@ -110,5 +119,10 @@ export default {
     min-width: 60px;
     max-width: 80px;
   }
+}
+
+.service_label {
+  color: black;
+  opacity: 1;
 }
 </style>

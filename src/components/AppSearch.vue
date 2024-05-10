@@ -65,7 +65,7 @@ export default {
   display: flex;
   background: linear-gradient(90deg, rgb(226, 199, 137) 10%, rgba(255, 179, 14, 1) 48%, rgba(243, 78, 57, 1) 97%);
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .jumbo img {
