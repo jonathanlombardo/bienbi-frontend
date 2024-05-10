@@ -6,6 +6,12 @@ export default {
   data() {
     return {
       appartment: false,
+      UIname: '',
+      UIlast_name: '',
+      UImail: '',
+      message: '',
+      feedbackMessage: '',
+
     };
   },
   methods: {
@@ -17,9 +23,31 @@ export default {
       axios.get(endpoint).then((response) => {
         console.log(response);
         this.appartment = response.data;
-        console.log(this.appartment);
       });
     },
+
+    sendMessage(endpoint = api.baseUrl + "messages"){
+
+      const params = {};
+      params.id = this.appartment.id
+      params.first_name = this.UIname
+      params.last_name = this.UIlast_name
+      params.mail = this.UImail
+      params.body = this.message
+      console.log(params)
+      console.log(endpoint)
+
+      axios.post(endpoint, params).then((response) =>{
+        console.log(response.data)
+        if(response.data.response){
+          this.feedbackMessage = 'Messaggio inviato correttamente'
+        }
+        else{
+          this.feedbackMessage = 'Errore nell\'invio del messaggio'
+        }
+      })
+    },
+    
   },
   created() {
     this.fetchAppartmentDetails();
@@ -31,7 +59,7 @@ export default {
 <template>
   <section class="pb-4">
 
-    <div class="container my-container rounded">
+    <div class="container my-container rounded position-relative">
 
       <h2 class="text-center mb-4 show_title">{{ appartment.title }}</h2>
 
@@ -76,17 +104,77 @@ export default {
           <div class="my-3"><strong class="me-1">Indirizzo: </strong>{{ appartment.address }}</div>
 
           <div class="my-3">
-            <strong class="me-1">Proprietario: </strong>{{ appartment ? appartment.user.name + ' ' + appartment.user.last_name : ''}}
+            <strong class="me-1">Proprietario: </strong>{{ appartment ? appartment.user.name + ' ' +
+              appartment.user.last_name : '' }}
           </div>
 
           <div class="my-3">
-            <strong class="me-1">Servizi: </strong><div v-for="service in appartment.services" class="d-flex align-items-center"><i :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label }}</span></div>
+            <strong class="me-1">Servizi: </strong>
+            <div v-for="service in appartment.services" class="d-flex align-items-center"><i
+                :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label
+                }}</span></div>
           </div>
+
         </div>
 
+
       </div>
+
+      <!-- trigger button -->
+
+      <button class="btn my_btn btn-message position-absolute" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        <i class="fa-regular fa-message"></i>
+      </button>
+
+      <!-- offcanvas -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{appartment.title}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div>
+
+            <!-- form di contatto -->
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Nome</label>
+              <input v-model="UIname" type="name" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Cognome</label>
+              <input v-model="UIlast_name" type="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Cognome">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Email</label>
+              <input v-model="UImail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Messaggio</label>
+              <textarea v-model="message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
+            </div>
+
+            <div class="alert">
+              {{ feedbackMessage }}
+            </div>
+
+          </div>
+
+          <div class="mt-3">
+            <button class="btn my_btn" type="button" @click="sendMessage()">
+              Invia
+            </button>
+          </div>
+        </div>
+      </div>
+
+
     </div>
-    
+
   </section>
 </template>
 
@@ -115,7 +203,8 @@ export default {
   padding: 20px;
   max-height: 115px;
   min-height: 115px;
-  img{
+
+  img {
     min-width: 60px;
     max-width: 80px;
   }
@@ -124,5 +213,10 @@ export default {
 .service_label {
   color: black;
   opacity: 1;
+}
+
+.btn-message {
+  bottom: 5%;
+  right: 3%;
 }
 </style>
