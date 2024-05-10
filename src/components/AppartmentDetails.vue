@@ -183,44 +183,44 @@ export default {
         </div>
 
         <div :class="feedbackMessage ? 'd-none' : 'd-block'">
-          <div class="offcanvas-body px-3 py-2">
+          <div class="offcanvas-body p-3">
             <div>
               <div class="mb-2 font_size"> 
                 Tutti i campi contrasseganti con * sono obbligatori.
               </div>
               <!-- form di contatto -->
               <form class="form-text">
-                  <div class=" d-flex gap-4">
-                    <div>
-                      <label for="name" class="form-label">Nome*</label>
-                      <input v-model="UIname" type="name" class="form-control" id="name" placeholder="Nome">
-                      <div id="nameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo nome</div>
-                    </div>
+                <div class=" d-flex gap-4">
+                  <div>
+                    <label for="name" class="form-label">Nome*</label>
+                    <input v-model="UIname" type="name" class="form-control" id="name" placeholder="Nome">
+                    <div id="nameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo nome</div>
+                  </div>
                     
-                    <div>
-                      <label for="last_name" class="form-label">Cognome*</label>
-                      <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome">
-                      <div id="lastNameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo cognome</div>
-                    </div>
+                  <div>
+                    <label for="last_name" class="form-label">Cognome*</label>
+                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome">
+                    <div id="lastNameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo cognome</div>
                   </div>
+                </div>
     
-                  <div class="mt-2">
-                    <label for="email" class="form-label">Email*</label>
-                    <input v-model="UImail" type="email" class="form-control" id="email" placeholder="Email">
-                    <div id="emailError" class="error text-danger ms-1" style="display: none;">Inserisci la mail</div>
-                  </div>
+                <div class="mt-2">
+                  <label for="email" class="form-label">Email*</label>
+                  <input v-model="UImail" type="email" class="form-control" id="email" placeholder="Email">
+                  <div id="emailError" class="error text-danger ms-1" style="display: none;">Inserisci la mail</div>
+                </div>
       
-                  <div class="mt-2">
-                    <label for="message" class="form-label">Messaggio*</label>
-                    <textarea v-model="message" class="form-control" id="message" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
-                    <div id="messageError" class="error text-danger ms-1" style="display: none;">Inserisci il messaggio</div>
-                  </div>
+                <div class="mt-2">
+                  <label for="message" class="form-label">Messaggio*</label>
+                  <textarea v-model="message" class="form-control" id="message" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
+                  <div id="messageError" class="error text-danger ms-1" style="display: none;">Inserisci il messaggio</div>
+                </div>
   
-                  <div class="mt-3">
-                    <button class="btn my_btn" type="button" @click="sendMessage(), validateForm()">
-                      Invia
-                    </button>
-                  </div>
+                <div class="mt-3">
+                  <button class="btn my_btn" type="button" @click="sendMessage(), validateForm()">
+                    Invia
+                  </button>
+                </div>
               </form>
             </div>
           </div>
