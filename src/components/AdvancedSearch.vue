@@ -72,8 +72,6 @@ export default {
       params.long = params.long ?? 9.18951;
       params.radius = params.radius ?? 30000;
 
-      // console.log(params);
-
       axios
         .get(endpoint, {
           params: params,
@@ -99,6 +97,48 @@ export default {
       console.log(this.activeFilter.service1);
 
       this.newFilter();
+    },
+
+    handleRoomsInput(idString) {
+      // verifica se valido
+      let isValid = false;
+      const input = document.getElementById(idString);
+      const roomValue = input.value;
+      if (roomValue == parseInt(roomValue) && roomValue > 0) {
+        isValid = true;
+      }
+
+      // inserisci eventuali classi d'errore
+      if (!isValid) {
+        input.classList.add("is-invalid");
+      }
+
+      // lancia nuovo filtro
+      if (isValid) {
+        input.classList.remove("is-invalid");
+        this.newFilter();
+      }
+    },
+
+    handleMetersInput() {
+      // verifica se valido
+      let isValid = false;
+      const input = document.getElementById("square_meters");
+      const metersValue = input.value;
+      if (metersValue == parseInt(metersValue) && metersValue >= 30) {
+        isValid = true;
+      }
+
+      // inserisci eventuali classi d'errore
+      if (!isValid) {
+        input.classList.add("is-invalid");
+      }
+
+      // lancia nuovo filtro
+      if (isValid) {
+        input.classList.remove("is-invalid");
+        this.newFilter();
+      }
     },
   },
 
@@ -136,7 +176,8 @@ export default {
             <img src="/img/stanze.png" alt="casa" />
             <label for="rooms" class="form-label fw-bold m-2">Stanze</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="rooms" @input="newFilter()" v-model="activeFilter.rooms" />
+          <input type="number" class="form-control" min="0" max="50" id="rooms" @input="handleRoomsInput('rooms')" v-model="activeFilter.rooms" />
+          <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
         <div class="col p-3">
@@ -144,7 +185,8 @@ export default {
             <img src="/img/letti.png" alt="casa" />
             <label for="beds" class="form-label fw-bold m-2">Letti</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="beds" @input="newFilter()" v-model="activeFilter.beds" />
+          <input type="number" class="form-control" min="0" max="50" id="beds" @input="handleRoomsInput('beds')" v-model="activeFilter.beds" />
+          <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
         <div class="col p-3">
@@ -152,7 +194,8 @@ export default {
             <img src="/img/bagni.png" alt="casa" />
             <label for="bathrooms" class="form-label fw-bold m-2">Bagni</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="bathrooms" @input="newFilter()" v-model="activeFilter.bathrooms" />
+          <input type="number" class="form-control" min="0" max="50" id="bathrooms" @input="handleRoomsInput('bathrooms')" v-model="activeFilter.bathrooms" />
+          <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
         <div class="col p-3">
@@ -160,7 +203,8 @@ export default {
             <img src="/img/mq.png" alt="casa" />
             <label for="square_meters" class="form-label fw-bold m-2">Metri quadri</label>
           </div>
-          <input type="number" class="form-control" min="0" max="1000" id="square_meters" @input="newFilter()" v-model="activeFilter.square_meters" />
+          <input type="number" class="form-control" min="30" max="1000" step="10" id="square_meters" @input="handleMetersInput()" v-model="activeFilter.square_meters" />
+          <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 30</div>
         </div>
 
         <div class="col-12 my-2">
