@@ -46,34 +46,57 @@ export default {
           this.UImail = '',
           this.message = ''
         }
-        else{
-          this.feedbackMessage = 'Errore nell\'invio del messaggio'
-        }
       })
     },
 
-    handleFormInput(idString) {
-      // verifica se valido
-      let isValid = false;
-      const input = document.getElementById(idString);
-      const inputValue = input.value;
-      if (inputValue) {
-        isValid = true;
+    validateForm() {
+      let name = document.getElementById("name").value;
+      let lastName = document.getElementById("last_name").value;
+      let email = document.getElementById("email").value;
+      let message = document.getElementById("message").value;
+
+      let nameError = document.getElementById("nameError");
+      let lastNameError = document.getElementById("lastNameError");
+      let emailError = document.getElementById("emailError");
+      let messageError = document.getElementById("messageError");
+
+      let isValid = true;
+
+      if (name === "") {
+          nameError.style.display = "block";
+          isValid = false;
+      } else {
+          nameError.style.display = "none";
       }
 
-      // inserisci eventuali classi d'errore
-      if (!isValid) {
-        input.classList.add("is-invalid");
+      if (lastName === "") {
+          lastNameError.style.display = "block";
+          isValid = false;
+      } else {
+          lastNameError.style.display = "none";
       }
 
-      // lancia nuovo filtro
+      if (email === "") {
+          emailError.style.display = "block";
+          isValid = false;
+      } else {
+          emailError.style.display = "none";
+      }
+
+      if (message === "") {
+          messageError.style.display = "block";
+          isValid = false;
+      } else {
+          messageError.style.display = "none";
+      }
+
       if (isValid) {
-        input.classList.remove("is-invalid");
-        this.newFilter();
+          // Invia il form solo se tutti i campi sono validi
+          document.getElementById("myForm").submit();
       }
-    },
-    
+    }
   },
+
   created() {
     this.fetchAppartmentDetails();
     // console.log(this.appartment);
@@ -155,55 +178,70 @@ export default {
       <!-- offcanvas -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{appartment.title}}</h5>
+        <div class="offcanvas-header justify-content-between">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Invia un messaggio al proprietario</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="d-flex align-items-center flex-column">
           <div>
-            <div class="mb-4 font_size"> 
-              Tutti i campi contrasseganti con * sono obbligatori.
-            </div>
-            <!-- form di contatto -->
-            <form>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nome*</label>
-                <input v-model="UIname" type="name" class="form-control" @input="handleFormInput('name')" id="name" placeholder="Nome">
-              </div>
-  
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Cognome*</label>
-                <input v-model="UIlast_name" type="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Cognome">
-              </div>
-  
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Email*</label>
-                <input v-model="UImail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
-              </div>
-  
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Messaggio*</label>
-                <textarea v-model="message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
-              </div>
-  
-              <div class="alert">
-                {{ feedbackMessage }}
-              </div>
-  
-              <div class="mt-3">
-                <button :data-bs-dismiss="feedbackMessage ? 'offcanvas' : ''" class="btn my_btn" type="button" @click="sendMessage(), handleFormInput()">
-                  Invia
-                </button>
-              </div>
-            </form>
+            <img src="/public/img/appartment_placeholder.jpg" alt="" class="off_image">
           </div>
-
+          <div class="mt-3">
+            <strong>Proprietario: </strong>
+            {{ appartment.user.name }}
+            {{ appartment.user.last_name }}
+          </div>
+        </div>
+        <div :class="feedbackMessage ? 'd-none' : 'd-block'">
+          
+          <div class="offcanvas-body">
+            <div>
+              <div class="mb-3 font_size"> 
+                Tutti i campi contrasseganti con * sono obbligatori.
+              </div>
+              <!-- form di contatto -->
+              <form>
+                <div class="mb-3 d-flex gap-4">
+                  <div>
+                    <label for="name" class="form-label">Nome*</label>
+                    <input v-model="UIname" type="name" class="form-control" id="name" placeholder="Nome">
+                    <div id="nameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo nome</div>
+                  </div>
+                  <div>
+                    <label for="last_name" class="form-label">Cognome*</label>
+                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome">
+                    <div id="lastNameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo cognome</div>
+                  </div>
+                </div>
+    
+    
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email*</label>
+                  <input v-model="UImail" type="email" class="form-control" id="email" placeholder="Email">
+                  <div id="emailError" class="error text-danger ms-1" style="display: none;">Inserisci la mail</div>
+                </div>
+    
+                <div class="mb-3">
+                  <label for="message" class="form-label">Messaggio*</label>
+                  <textarea v-model="message" class="form-control" id="message" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
+                  <div id="messageError" class="error text-danger ms-1" style="display: none;">Inserisci il messaggio</div>
+                </div>
+    
+                <!-- <div class="alert">
+                  {{ feedbackMessage }}
+                </div> -->
+    
+                <div class="mt-3">
+                  <button class="btn my_btn" type="button" @click="sendMessage(), validateForm()">
+                    Invia
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-
-
     </div>
-
   </section>
 </template>
 
@@ -251,5 +289,13 @@ export default {
 
 .font_size {
   font-size: 0.9rem;
+}
+
+.error {
+  font-size: 0.8rem;
+}
+
+.off_image {
+  width: 200px;
 }
 </style>
