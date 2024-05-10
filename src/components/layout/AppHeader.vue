@@ -10,11 +10,12 @@
           </div>
         </router-link>
         <div class="d-none d-lg-inline text-decoration-none text-black px-2 me-1">
-          <span>Se sei un Host di Bien-Bì
-          </span><button class="my_btn">Accedi qui</button>
+          <span class="me-3">Se sei un Host di Bien-Bì</span>
+          <a href="http://127.0.0.1:8000" class="my_btn">Accedi qui</a>
         </div>
         <div class="d-lg-none">
-          <button class="my_btn">Sei un Host?</button>
+          <span class="me-3">Se sei un Host?</span>
+          <a href="http://127.0.0.1:8000" class="my_btn">Accedi</a>
         </div>
       </div>
     </section>
