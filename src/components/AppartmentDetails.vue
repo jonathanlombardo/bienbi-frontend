@@ -40,12 +40,37 @@ export default {
       axios.post(endpoint, params).then((response) =>{
         console.log(response.data)
         if(response.data.response){
-          this.feedbackMessage = 'Messaggio inviato correttamente'
+          this.feedbackMessage = 'Messaggio inviato correttamente',
+          this.UIname = '',
+          this.UIlast_name = '',
+          this.UImail = '',
+          this.message = ''
         }
         else{
           this.feedbackMessage = 'Errore nell\'invio del messaggio'
         }
       })
+    },
+
+    handleFormInput(idString) {
+      // verifica se valido
+      let isValid = false;
+      const input = document.getElementById(idString);
+      const inputValue = input.value;
+      if (inputValue) {
+        isValid = true;
+      }
+
+      // inserisci eventuali classi d'errore
+      if (!isValid) {
+        input.classList.add("is-invalid");
+      }
+
+      // lancia nuovo filtro
+      if (isValid) {
+        input.classList.remove("is-invalid");
+        this.newFilter();
+      }
     },
     
   },
@@ -136,39 +161,43 @@ export default {
         </div>
         <div class="offcanvas-body">
           <div>
-
+            <div class="mb-4 font_size"> 
+              Tutti i campi contrasseganti con * sono obbligatori.
+            </div>
             <!-- form di contatto -->
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Nome</label>
-              <input v-model="UIname" type="name" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
-            </div>
-
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Cognome</label>
-              <input v-model="UIlast_name" type="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Cognome">
-            </div>
-
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Email</label>
-              <input v-model="UImail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
-            </div>
-
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Messaggio</label>
-              <textarea v-model="message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
-            </div>
-
-            <div class="alert">
-              {{ feedbackMessage }}
-            </div>
-
+            <form>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nome*</label>
+                <input v-model="UIname" type="name" class="form-control" @input="handleFormInput('name')" id="name" placeholder="Nome">
+              </div>
+  
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Cognome*</label>
+                <input v-model="UIlast_name" type="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Cognome">
+              </div>
+  
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email*</label>
+                <input v-model="UImail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+              </div>
+  
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Messaggio*</label>
+                <textarea v-model="message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
+              </div>
+  
+              <div class="alert">
+                {{ feedbackMessage }}
+              </div>
+  
+              <div class="mt-3">
+                <button :data-bs-dismiss="feedbackMessage ? 'offcanvas' : ''" class="btn my_btn" type="button" @click="sendMessage(), handleFormInput()">
+                  Invia
+                </button>
+              </div>
+            </form>
           </div>
 
-          <div class="mt-3">
-            <button class="btn my_btn" type="button" @click="sendMessage()">
-              Invia
-            </button>
-          </div>
         </div>
       </div>
 
@@ -218,5 +247,9 @@ export default {
 .btn-message {
   bottom: 5%;
   right: 3%;
+}
+
+.font_size {
+  font-size: 0.9rem;
 }
 </style>
