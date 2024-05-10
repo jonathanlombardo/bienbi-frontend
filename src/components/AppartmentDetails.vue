@@ -106,13 +106,9 @@ export default {
 
 <template>
   <section class="pb-4">
-
     <div class="container my-container rounded position-relative">
-
       <h2 class="text-center mb-4 show_title">{{ appartment.title }}</h2>
-
       <div class="row flex-column flex-md-row">
-
         <div class="col-12 col-md-6 ">
           <div class="">
             <img src="/img/appartment_placeholder.jpg" alt="" class="w-100 rounded">
@@ -127,28 +123,29 @@ export default {
                 <div class="text-center"><strong>Stanze: </strong>{{ appartment.rooms }}</div>
               </div>
             </div>
+
             <div class="col-3 px-2">
               <div class="rooms_container">
                 <img src="/img/letti.png" alt="" class="w-100 p-3">
                 <div class="text-center"><strong>Letti: </strong>{{ appartment.beds }}</div>
-
               </div>
             </div>
+
             <div class="col-3 px-2">
               <div class="rooms_container">
                 <img src="/img/bagni.png" alt="" class="w-100 p-3">
                 <div class="text-center"><strong>Bagni: </strong>{{ appartment.bathrooms }}</div>
-
               </div>
             </div>
+
             <div class="col-3 px-2">
               <div class="rooms_container">
                 <img src="/img/mq.png" alt="" class="w-100 p-3">
                 <div class="text-center"><strong>Mq: </strong>{{ appartment.square_meters }}</div>
-
               </div>
             </div>
           </div>
+
           <div class="my-3"><strong class="me-1">Indirizzo: </strong>{{ appartment.address }}</div>
 
           <div class="my-3">
@@ -159,22 +156,15 @@ export default {
           <div class="my-3">
             <strong class="me-1">Servizi: </strong>
             <div v-for="service in appartment.services" class="d-flex align-items-center"><i
-                :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label
-                }}</span></div>
+                :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label}}</span></div>
           </div>
-
         </div>
-
-
       </div>
-
       <!-- trigger button -->
-
       <button class="btn my_btn btn-message position-absolute" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         <i class="fa-regular fa-message"></i>
       </button>
-
       <!-- offcanvas -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel">
@@ -182,60 +172,55 @@ export default {
           <h5 class="offcanvas-title" id="offcanvasExampleLabel">Invia un messaggio al proprietario</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="d-flex align-items-center flex-column">
-          <div>
-            <img src="/public/img/appartment_placeholder.jpg" alt="" class="off_image">
-          </div>
-          <div class="mt-3">
+
+        <div class="row g-1">
+          <img src="/public/img/appartment_placeholder.jpg" alt="" class="img-fluid">
+          <div class="text-center my-1">
             <strong>Proprietario: </strong>
             {{ appartment.user.name }}
             {{ appartment.user.last_name }}
           </div>
         </div>
+
         <div :class="feedbackMessage ? 'd-none' : 'd-block'">
-          
-          <div class="offcanvas-body">
+          <div class="offcanvas-body px-3 py-2">
             <div>
-              <div class="mb-3 font_size"> 
+              <div class="mb-2 font_size"> 
                 Tutti i campi contrasseganti con * sono obbligatori.
               </div>
               <!-- form di contatto -->
-              <form>
-                <div class="mb-3 d-flex gap-4">
-                  <div>
-                    <label for="name" class="form-label">Nome*</label>
-                    <input v-model="UIname" type="name" class="form-control" id="name" placeholder="Nome">
-                    <div id="nameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo nome</div>
+              <form class="form-text">
+                  <div class=" d-flex gap-4">
+                    <div>
+                      <label for="name" class="form-label">Nome*</label>
+                      <input v-model="UIname" type="name" class="form-control" id="name" placeholder="Nome">
+                      <div id="nameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo nome</div>
+                    </div>
+                    
+                    <div>
+                      <label for="last_name" class="form-label">Cognome*</label>
+                      <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome">
+                      <div id="lastNameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo cognome</div>
+                    </div>
                   </div>
-                  <div>
-                    <label for="last_name" class="form-label">Cognome*</label>
-                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome">
-                    <div id="lastNameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo cognome</div>
+    
+                  <div class="mt-2">
+                    <label for="email" class="form-label">Email*</label>
+                    <input v-model="UImail" type="email" class="form-control" id="email" placeholder="Email">
+                    <div id="emailError" class="error text-danger ms-1" style="display: none;">Inserisci la mail</div>
                   </div>
-                </div>
-    
-    
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email*</label>
-                  <input v-model="UImail" type="email" class="form-control" id="email" placeholder="Email">
-                  <div id="emailError" class="error text-danger ms-1" style="display: none;">Inserisci la mail</div>
-                </div>
-    
-                <div class="mb-3">
-                  <label for="message" class="form-label">Messaggio*</label>
-                  <textarea v-model="message" class="form-control" id="message" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
-                  <div id="messageError" class="error text-danger ms-1" style="display: none;">Inserisci il messaggio</div>
-                </div>
-    
-                <!-- <div class="alert">
-                  {{ feedbackMessage }}
-                </div> -->
-    
-                <div class="mt-3">
-                  <button class="btn my_btn" type="button" @click="sendMessage(), validateForm()">
-                    Invia
-                  </button>
-                </div>
+      
+                  <div class="mt-2">
+                    <label for="message" class="form-label">Messaggio*</label>
+                    <textarea v-model="message" class="form-control" id="message" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
+                    <div id="messageError" class="error text-danger ms-1" style="display: none;">Inserisci il messaggio</div>
+                  </div>
+  
+                  <div class="mt-3">
+                    <button class="btn my_btn" type="button" @click="sendMessage(), validateForm()">
+                      Invia
+                    </button>
+                  </div>
               </form>
             </div>
           </div>
@@ -247,13 +232,13 @@ export default {
 
 <style lang="scss">
 .my-container {
-  background-color: rgb(243, 243, 243);
+  background-color: #f3f3f3;
   border: none;
   padding: 15px;
 }
 
 .show_title {
-  background: linear-gradient(90deg, rgb(233, 214, 171) 10%, rgb(255, 179, 14) 48%, rgb(243, 78, 57) 97%);
+  background: linear-gradient(90deg, #e9d6ab 10%, #ffb30e 48%, #f34e39 97%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -278,13 +263,16 @@ export default {
 }
 
 .service_label {
-  color: black;
+  color: #000000;
   opacity: 1;
 }
 
 .btn-message {
   bottom: 5%;
   right: 3%;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
 .font_size {
@@ -292,10 +280,10 @@ export default {
 }
 
 .error {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
-.off_image {
-  width: 200px;
+.form.text{
+  height: 100px;
 }
 </style>

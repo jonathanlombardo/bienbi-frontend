@@ -39,7 +39,7 @@ span {
 }
 
 .card-title {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #808080;
 }
 
 .card-img-top {
@@ -64,7 +64,7 @@ span {
     top: 5px;
     background-color: #0000003e;
     font-size: 0.8rem;
-    color: #e4e2e2;
+    color: #ffb30e;
   }
 }
 
