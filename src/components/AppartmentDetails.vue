@@ -156,7 +156,7 @@ export default {
           <div class="my-3">
             <strong class="me-1">Servizi: </strong>
             <div v-for="service in appartment.services" class="d-flex align-items-center"><i
-                :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label}}</span></div>
+              :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label}}</span></div>
           </div>
         </div>
       </div>
@@ -225,6 +225,15 @@ export default {
             </div>
           </div>
         </div>
+
+        <div :class="feedbackMessage ? 'd-flex flex-column align-items-center my-4' : 'd-none'">
+          <div class="mx-3">
+            <div class="fw-bold fs-2 text-center">Messaggio inviato correttamente</div>
+          </div>
+          <div class="icona">
+            <i class="fa-solid fa-envelope-circle-check"></i>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -285,5 +294,10 @@ export default {
 
 .form.text{
   height: 100px;
+}
+
+.icona{
+  font-size: 10rem;
+  color: green; 
 }
 </style>
