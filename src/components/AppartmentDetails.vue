@@ -6,38 +6,33 @@ export default {
   data() {
     return {
       appartment: false,
-      UIname: '',
-      UIlast_name: '',
-      UImail: '',
-      body: '',
-      feedbackMessage: '',
+      UIname: "",
+      UIlast_name: "",
+      UImail: "",
+      body: "",
+      feedbackMessage: "",
       message: false,
     };
   },
   methods: {
-    fetchAppartmentDetails(
-      endpoint = api.baseUrl +
-        "appartments/" +
-        this.$route.params.appartmentSlug
-    ) {
+    fetchAppartmentDetails(endpoint = api.baseUrl + "appartments/" + this.$route.params.appartmentSlug) {
       axios.get(endpoint).then((response) => {
         console.log(response);
         this.appartment = response.data;
       });
     },
 
-    sendMessage(endpoint = api.baseUrl + "messages"){
-
+    sendMessage(endpoint = api.baseUrl + "messages") {
       const params = {};
-      params.id = this.appartment.id
-      params.first_name = this.UIname
-      params.last_name = this.UIlast_name
-      params.mail = this.UImail
-      params.body = this.body
-      console.log(params)
-      console.log(endpoint)
+      params.id = this.appartment.id;
+      params.first_name = this.UIname;
+      params.last_name = this.UIlast_name;
+      params.mail = this.UImail;
+      params.body = this.body;
+      console.log(params);
+      console.log(endpoint);
 
-      axios.post(endpoint, params).then((response) =>{
+      axios.post(endpoint, params).then((response) => {
         this.message = response.data;
         let nameError = document.getElementById("nameError");
         let lastNameError = document.getElementById("lastNameError");
@@ -46,51 +41,46 @@ export default {
 
         let isValid = true;
         console.log(this.message);
-        if(this.message.response){
-          this.feedbackMessage = 'Messaggio inviato correttamente',
-          this.UIname = '',
-          this.UIlast_name = '',
-          this.UImail = '',
-          this.body = ''
+        if (this.message.response) {
+          (this.feedbackMessage = "Messaggio inviato correttamente"), (this.UIname = ""), (this.UIlast_name = ""), (this.UImail = ""), (this.body = "");
         } else {
           console.log(this.message.message);
-          if(this.message.message == 'name'){
+          if (this.message.message == "name") {
             nameError.style.display = "block";
             isValid = false;
           } else {
             nameError.style.display = "none";
           }
 
-          if(this.message.message == 'lastname'){
+          if (this.message.message == "lastname") {
             lastNameError.style.display = "block";
             isValid = false;
           } else {
             lastNameError.style.display = "none";
           }
 
-          if(this.message.message == 'mail'){
+          if (this.message.message == "mail") {
             emailError.style.display = "block";
             isValid = false;
           } else {
             emailError.style.display = "none";
           }
 
-          if(this.message.message == 'body'){
+          if (this.message.message == "body") {
             messageError.style.display = "block";
             isValid = false;
           } else {
             messageError.style.display = "none";
           }
-
         }
-      })
+      });
     },
 
     validateForm() {
       let name = document.getElementById("name").value;
       let lastName = document.getElementById("last_name").value;
       let email = document.getElementById("email").value;
-      let emailArray = email.split('');
+      let emailArray = email.split("");
       let body = document.getElementById("body").value;
 
       let nameError = document.getElementById("nameError");
@@ -117,12 +107,12 @@ export default {
       let atPosition = false;
       let dotPosition = false;
 
-      for (let i=0; i<email.length; i++) {
-        if(email[i] == '@') atPosition = i;
-        if(email[i] == '.') dotPosition = i;
+      for (let i = 0; i < email.length; i++) {
+        if (email[i] == "@") atPosition = i;
+        if (email[i] == ".") dotPosition = i;
       }
       console.log(atPosition, dotPosition);
-      if (!email || !atPosition || !dotPosition || dotPosition<atPosition) {
+      if (!email || !atPosition || !dotPosition || dotPosition < atPosition) {
         emailError.style.display = "block";
         isValid = false;
         console.log(isValid);
@@ -144,7 +134,7 @@ export default {
         // document.getElementById("myForm").submit();
         this.sendMessage();
       }
-    }
+    },
   },
 
   created() {
@@ -159,9 +149,9 @@ export default {
     <div class="container my-container rounded position-relative">
       <h2 class="text-center mb-4 show_title">{{ appartment.title }}</h2>
       <div class="row flex-column flex-md-row">
-        <div class="col-12 col-md-6 ">
+        <div class="col-12 col-md-6">
           <div class="">
-            <img src="/img/appartment_placeholder.jpg" alt="" class="w-100 rounded">
+            <img :src="appartment ? appartment.imgUrl : ''" alt="" class="appartment-img" />
           </div>
         </div>
 
@@ -169,28 +159,28 @@ export default {
           <div class="row align-items-center justify-content-center">
             <div class="col-3 px-2">
               <div class="rooms_container">
-                <img src="/img/stanze.png" alt="" class="w-100 p-3">
+                <img src="/img/stanze.png" alt="" class="w-100 p-3" />
                 <div class="text-center"><strong>Stanze: </strong>{{ appartment.rooms }}</div>
               </div>
             </div>
 
             <div class="col-3 px-2">
               <div class="rooms_container">
-                <img src="/img/letti.png" alt="" class="w-100 p-3">
+                <img src="/img/letti.png" alt="" class="w-100 p-3" />
                 <div class="text-center"><strong>Letti: </strong>{{ appartment.beds }}</div>
               </div>
             </div>
 
             <div class="col-3 px-2">
               <div class="rooms_container">
-                <img src="/img/bagni.png" alt="" class="w-100 p-3">
+                <img src="/img/bagni.png" alt="" class="w-100 p-3" />
                 <div class="text-center"><strong>Bagni: </strong>{{ appartment.bathrooms }}</div>
               </div>
             </div>
 
             <div class="col-3 px-2">
               <div class="rooms_container">
-                <img src="/img/mq.png" alt="" class="w-100 p-3">
+                <img src="/img/mq.png" alt="" class="w-100 p-3" />
                 <div class="text-center"><strong>Mq: </strong>{{ appartment.square_meters }}</div>
               </div>
             </div>
@@ -198,26 +188,22 @@ export default {
 
           <div class="my-3"><strong class="me-1">Indirizzo: </strong>{{ appartment.address }}</div>
 
-          <div class="my-3">
-            <strong class="me-1">Proprietario: </strong>{{ appartment ? appartment.user.name + ' ' +
-              appartment.user.last_name : '' }}
-          </div>
+          <div class="my-3"><strong class="me-1">Proprietario: </strong>{{ appartment ? appartment.user.name + " " + appartment.user.last_name : "" }}</div>
 
           <div class="my-3">
             <strong class="me-1">Servizi: </strong>
-            <div v-for="service in appartment.services" class="d-flex align-items-center"><i
-              :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label}}</span></div>
+            <div v-for="service in appartment.services" class="d-flex align-items-center">
+              <i :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label }}</span>
+            </div>
           </div>
         </div>
       </div>
       <!-- trigger button -->
-      <button class="btn my_btn btn-message position-absolute" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+      <button class="btn my_btn btn-message position-absolute" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         <i class="fa-regular fa-message"></i>
       </button>
       <!-- offcanvas -->
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header justify-content-between">
           <h5 class="offcanvas-title" id="offcanvasExampleLabel">Invia un messaggio al proprietario</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -235,41 +221,37 @@ export default {
         <div :class="feedbackMessage ? 'd-none' : 'd-block'">
           <div class="offcanvas-body p-3">
             <div>
-              <div class="mb-4 font_size"> 
-                Tutti i campi contrasseganti con * sono obbligatori.
-              </div>
+              <div class="mb-4 font_size">Tutti i campi contrasseganti con * sono obbligatori.</div>
               <!-- form di contatto -->
               <form class="form-text">
-                <div class=" d-flex gap-4">
+                <div class="d-flex gap-4">
                   <div>
                     <label for="name" class="form-label">Nome*</label>
-                    <input v-model="UIname" type="name" class="form-control" id="name" placeholder="Nome">
-                    <div id="nameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo nome</div>
+                    <input v-model="UIname" type="name" class="form-control" id="name" placeholder="Nome" />
+                    <div id="nameError" class="error text-danger ms-1" style="display: none">Inserisci il tuo nome</div>
                   </div>
-                    
+
                   <div>
                     <label for="last_name" class="form-label">Cognome*</label>
-                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome">
-                    <div id="lastNameError" class="error text-danger ms-1" style="display: none;">Inserisci il tuo cognome</div>
+                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome" />
+                    <div id="lastNameError" class="error text-danger ms-1" style="display: none">Inserisci il tuo cognome</div>
                   </div>
                 </div>
-    
+
                 <div class="my-4">
                   <label for="email" class="form-label">Email*</label>
-                  <input v-model="UImail" type="text" class="form-control" id="email" placeholder="Email">
-                  <div id="emailError" class="error text-danger ms-1" style="display: none;">Inserisci la mail</div>
+                  <input v-model="UImail" type="text" class="form-control" id="email" placeholder="Email" />
+                  <div id="emailError" class="error text-danger ms-1" style="display: none">Inserisci la mail</div>
                 </div>
-      
+
                 <div class="mt-2">
                   <label for="body" class="form-label">Messaggio*</label>
                   <textarea v-model="body" class="form-control" id="body" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
-                  <div id="messageError" class="error text-danger ms-1" style="display: none;">Inserisci il messaggio</div>
+                  <div id="messageError" class="error text-danger ms-1" style="display: none">Inserisci il messaggio</div>
                 </div>
-  
+
                 <div class="mt-3">
-                  <button class="btn my_btn" type="button" @click="validateForm()">
-                    Invia
-                  </button>
+                  <button class="btn my_btn" type="button" @click="validateForm()">Invia</button>
                 </div>
               </form>
             </div>
@@ -300,8 +282,16 @@ export default {
   background: linear-gradient(90deg, #e9d6ab 10%, #ffb30e 48%, #f34e39 97%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
+}
+
+.appartment-img {
+  border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: center;
 }
 
 .rooms_container {
@@ -342,12 +332,12 @@ export default {
   font-size: 0.7rem;
 }
 
-.form.text{
+.form.text {
   height: 100px;
 }
 
-.icona{
+.icona {
   font-size: 10rem;
-  color: green; 
+  color: green;
 }
 </style>
