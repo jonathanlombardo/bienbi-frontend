@@ -161,14 +161,16 @@ export default {
 
     <div class="container">
       <div class="w-75 m-auto">
-        <TomTomSearchbox :placeholder="address" class="my-3" @returnAddress="updatePosition" :inputValue="this.$route.query.address"></TomTomSearchbox>
+        <TomTomSearchbox :placeholder="address" class="my-3" @returnAddress="updatePosition"
+          :inputValue="this.$route.query.address"></TomTomSearchbox>
       </div>
       <div class="row">
         <div class="col p-3">
           <div class="p-3">
             <label for="customRange1" class="form-label fw-bold">Raggio di ricerca: {{ radiusKm }} Km </label>
           </div>
-          <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000" @input="newFilter()" v-model="activeFilter.radius" />
+          <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000"
+            @input="newFilter()" v-model="activeFilter.radius" />
         </div>
 
         <div class="col p-3">
@@ -176,7 +178,8 @@ export default {
             <img src="/img/stanze.png" alt="casa" />
             <label for="rooms" class="form-label fw-bold m-2">Stanze</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="rooms" @input="handleRoomsInput('rooms')" v-model="activeFilter.rooms" />
+          <input type="number" class="form-control" min="0" max="50" id="rooms" @input="handleRoomsInput('rooms')"
+            v-model="activeFilter.rooms" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
@@ -185,7 +188,8 @@ export default {
             <img src="/img/letti.png" alt="casa" />
             <label for="beds" class="form-label fw-bold m-2">Letti</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="beds" @input="handleRoomsInput('beds')" v-model="activeFilter.beds" />
+          <input type="number" class="form-control" min="0" max="50" id="beds" @input="handleRoomsInput('beds')"
+            v-model="activeFilter.beds" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
@@ -194,7 +198,8 @@ export default {
             <img src="/img/bagni.png" alt="casa" />
             <label for="bathrooms" class="form-label fw-bold m-2">Bagni</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="bathrooms" @input="handleRoomsInput('bathrooms')" v-model="activeFilter.bathrooms" />
+          <input type="number" class="form-control" min="0" max="50" id="bathrooms"
+            @input="handleRoomsInput('bathrooms')" v-model="activeFilter.bathrooms" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
@@ -203,16 +208,18 @@ export default {
             <img src="/img/mq.png" alt="casa" />
             <label for="square_meters" class="form-label fw-bold m-2">Metri quadri</label>
           </div>
-          <input type="number" class="form-control" min="30" max="1000" step="10" id="square_meters" @input="handleMetersInput()" v-model="activeFilter.square_meters" />
+          <input type="number" class="form-control" min="30" max="1000" step="10" id="square_meters"
+            @input="handleMetersInput()" v-model="activeFilter.square_meters" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 30</div>
         </div>
 
-        <div class="col-12 my-2">
+        <div class="col-12 my-2 d-none d-md-block">
           <div class="form-label fw-bold m-2">Servizi</div>
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 my-3">
             <div v-for="service of services" class="col">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" :id="'service' + service.id" @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
+                <input class="form-check-input" type="checkbox" :id="'service' + service.id"
+                  @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
                 <!-- icona servizi -->
                 <!-- <span><i :class="service.faIconClass"></i></span> -->
                 <label class="form-check-label text-nowrap" :for="'service' + service.id">{{ service.label }}</label>
@@ -220,13 +227,43 @@ export default {
             </div>
           </div>
         </div>
+
+        <div class="col-12 p-3">
+          <button class="btn btn-primary d-inline d-md-none my_btn" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Servizi
+          </button>
+
+          <div class="collapse d-md-none" id="collapseExample">
+            <div class="card card-body">
+              <div class="form-label fw-bold m-2">Servizi</div>
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 my-3">
+                <div v-for="service of services" class="col">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" :id="'service' + service.id"
+                      @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
+                    <!-- icona servizi -->
+                    <!-- <span><i :class="service.faIconClass"></i></span> -->
+                    <label class="form-check-label text-nowrap" :for="'service' + service.id">{{ service.label
+                      }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+
       </div>
     </div>
   </section>
 
   <section class="my-5">
     <div class="container">
-      <h2 v-if="store.searchedAppartments.length" class="text-center mb-5">Risultati nelle vicinanze di {{ address }}</h2>
+      <h2 v-if="store.searchedAppartments.length" class="text-center mb-5">Risultati nelle vicinanze di {{ address }}
+      </h2>
       <h2 v-else class="text-center mb-5">Nessun risultato con i criteri inseriti</h2>
       <div class="row g-4">
         <AppCard v-for="appartment in store.searchedAppartments" :appartment="appartment"></AppCard>
