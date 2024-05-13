@@ -26,7 +26,7 @@
 .header-fixed {
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 1;
   background-color: #fff;
 }
 

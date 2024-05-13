@@ -12,7 +12,9 @@ export default {
 
 <template>
   <AppHeader></AppHeader>
-  <router-view></router-view>
+  <div class="main-wrapper">
+    <router-view></router-view>
+  </div>
   <AppFooter></AppFooter>
 </template>
 
