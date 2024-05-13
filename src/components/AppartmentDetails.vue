@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import { api } from "../store";
+import TomTomMap from "./TomTomMap.vue";
 
 export default {
   data() {
@@ -14,11 +15,15 @@ export default {
       message: false,
     };
   },
+
+  components: { TomTomMap },
   methods: {
     fetchAppartmentDetails(endpoint = api.baseUrl + "appartments/" + this.$route.params.appartmentSlug) {
       axios.get(endpoint).then((response) => {
         console.log(response);
         this.appartment = response.data;
+        this.appartment.lat = parseFloat(this.appartment.lat);
+        this.appartment.long = parseFloat(this.appartment.long);
       });
     },
 
@@ -148,6 +153,7 @@ export default {
   <section class="pb-4">
     <div class="container my-container rounded position-relative">
       <h2 class="text-center mb-4 show_title">{{ appartment.title }}</h2>
+      <!-- <TomTomMap class="map mb-4" v-if="appartment" :lat="appartment.lat" :long="appartment.long" /> -->
       <div class="row flex-column flex-md-row">
         <div class="col-12 col-md-6">
           <div class="">
@@ -185,6 +191,8 @@ export default {
               </div>
             </div>
           </div>
+
+          <TomTomMap class="map mb-4" v-if="appartment" :lat="appartment.lat" :long="appartment.long" />
 
           <div class="my-3"><strong class="me-1">Indirizzo: </strong>{{ appartment.address }}</div>
 
@@ -272,6 +280,12 @@ export default {
 </template>
 
 <style lang="scss">
+.map {
+  width: 100%;
+  height: 200px;
+  // aspect-ratio: 16/9;
+}
+
 .my-container {
   background-color: #f3f3f3;
   border: none;

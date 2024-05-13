@@ -15,6 +15,10 @@ export default {
   props: {
     lat: Number,
     long: Number,
+    zoom: {
+      type: Number,
+      default: 16,
+    },
   },
 
   methods: {
@@ -29,7 +33,7 @@ export default {
       container: "map",
       center: [this.long, this.lat],
       language: "it-IT",
-      zoom: 16,
+      zoom: this.zoom,
       dragPan: !this.$isMobile(),
       // dragPan: true,
     });
