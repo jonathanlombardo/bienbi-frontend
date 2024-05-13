@@ -46,13 +46,13 @@ export default {
 
         let isValid = true;
         console.log(this.message);
-        if(this.message.response){
+        if (this.message.response) {
           this.feedbackMessage = 'Messaggio inviato correttamente';
           this.UIname = '';
           this.UIlast_name = '';
           this.UImail = '';
           this.body = '';
-          setTimeout(()=>{
+          setTimeout(() => {
             this.feedbackMessage = ''
           }, 1500)
         } else {
@@ -148,7 +148,7 @@ export default {
       }
     },
 
-    handleMessageClick(){
+    handleMessageClick() {
       document.getElementById("nameError").style.display = 'none';
       document.getElementById("lastNameError").style.display = 'none';
       document.getElementById("emailError").style.display = 'none';
@@ -166,8 +166,17 @@ export default {
 
 <template>
   <section class="pb-4">
-    <div class="container my-container rounded position-relative">
-      <h2 class="text-center mb-4 show_title">{{ appartment.title }}</h2>
+    <div class="container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
+      <div class="d-flex justify-content-center mb-3">
+        <div class="text-start">
+          <h2 class="text-center show_title m-0">{{ appartment.title }}</h2>
+          <div><i>di {{ appartment ? appartment.user.name + " " +
+            appartment.user.last_name : "" }}</i>
+          </div>
+
+        </div>
+
+      </div>
       <!-- <TomTomMap class="map mb-4" v-if="appartment" :lat="appartment.lat" :long="appartment.long" /> -->
       <div class="row flex-column flex-md-row">
         <div class="col-12 col-md-6">
@@ -177,48 +186,82 @@ export default {
         </div>
 
         <div class="col-12 col-md-6 mt-3 mt-md-0">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-3 px-2">
-              <div class="rooms_container">
-                <img src="/img/stanze.png" alt="" class="w-100 p-3" />
-                <div class="text-center"><strong>Stanze: </strong>{{ appartment.rooms }}</div>
+
+
+
+
+          <TomTomMap class="map" v-if="appartment" :lat="appartment.lat" :long="appartment.long" />
+          <div class="mb-2 opacity-75">{{ appartment.address }}</div>
+
+
+
+
+        </div>
+
+        <div class="col-12 p-3">
+
+          <div class="row align-items-center justify-content-center h-100">
+
+            <div class="col-12 col-md-6 h-100">
+
+              <div class="row">
+
+                <div class="col-6 px-2">
+                  <div class="rooms_container">
+                    <img src="/img/stanze.png" alt="" class="w-100 p-3" />
+                    <div class="text-center"><strong>Stanze: </strong>{{ appartment.rooms }}</div>
+                  </div>
+                </div>
+
+                <div class="col-6 px-2">
+                  <div class="rooms_container">
+                    <img src="/img/letti.png" alt="" class="w-100 p-3" />
+                    <div class="text-center"><strong>Letti: </strong>{{ appartment.beds }}</div>
+                  </div>
+                </div>
+
+                <div class="col-6 px-2">
+                  <div class="rooms_container">
+                    <img src="/img/bagni.png" alt="" class="w-100 p-3" />
+                    <div class="text-center"><strong>Bagni: </strong>{{ appartment.bathrooms }}</div>
+                  </div>
+                </div>
+
+                <div class="col-6 px-2">
+                  <div class="rooms_container">
+                    <img src="/img/mq.png" alt="" class="w-100 p-3" />
+                    <div class="text-center"><strong>Mq: </strong>{{ appartment.square_meters }}</div>
+                  </div>
+                </div>
+
               </div>
+
             </div>
 
-            <div class="col-3 px-2">
-              <div class="rooms_container">
-                <img src="/img/letti.png" alt="" class="w-100 p-3" />
-                <div class="text-center"><strong>Letti: </strong>{{ appartment.beds }}</div>
-              </div>
-            </div>
+            <div class="col-12 col-md-6 h-100">
 
-            <div class="col-3 px-2">
-              <div class="rooms_container">
-                <img src="/img/bagni.png" alt="" class="w-100 p-3" />
-                <div class="text-center"><strong>Bagni: </strong>{{ appartment.bathrooms }}</div>
-              </div>
-            </div>
+              <div class="row flex-column justify-content-start">
 
-            <div class="col-3 px-2">
-              <div class="rooms_container">
-                <img src="/img/mq.png" alt="" class="w-100 p-3" />
-                <div class="text-center"><strong>Mq: </strong>{{ appartment.square_meters }}</div>
+
+
+                <div>
+
+                  <strong class="me-1">Servizi: </strong>
+
+                  <ul class="d-flex flex-column flex-md-wrap service-container p-0 m-0">
+                    <li v-for="service in appartment.services" class="d-flex align-items-center my-3 p-0">
+                      <i :class="service.faIconClass" class="px-1 me-2 fs-4"></i><span class="service_label me-1">{{
+                        service.label }}</span>
+                    </li>
+                  </ul>
+
+                </div>
+
               </div>
+
             </div>
           </div>
 
-          <TomTomMap class="map mb-4" v-if="appartment" :lat="appartment.lat" :long="appartment.long" />
-
-          <div class="my-3"><strong class="me-1">Indirizzo: </strong>{{ appartment.address }}</div>
-
-          <div class="my-3"><strong class="me-1">Proprietario: </strong>{{ appartment ? appartment.user.name + " " + appartment.user.last_name : "" }}</div>
-
-          <div class="my-3">
-            <strong class="me-1">Servizi: </strong>
-            <div v-for="service in appartment.services" class="d-flex align-items-center">
-              <i :class="service.faIconClass" class="px-1 me-2"></i><span class="service_label me-1">{{ service.label }}</span>
-            </div>
-          </div>
         </div>
       </div>
       <!-- trigger button -->
@@ -257,8 +300,10 @@ export default {
 
                   <div>
                     <label for="last_name" class="form-label">Cognome*</label>
-                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome" />
-                    <div id="lastNameError" class="error text-danger ms-1" style="display: none">Inserisci il tuo cognome</div>
+                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name"
+                      placeholder="Cognome" />
+                    <div id="lastNameError" class="error text-danger ms-1" style="display: none">Inserisci il tuo
+                      cognome</div>
                   </div>
                 </div>
 
@@ -270,8 +315,10 @@ export default {
 
                 <div class="mt-2">
                   <label for="body" class="form-label">Messaggio*</label>
-                  <textarea v-model="body" class="form-control" id="body" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
-                  <div id="messageError" class="error text-danger ms-1" style="display: none">Inserisci il messaggio</div>
+                  <textarea v-model="body" class="form-control" id="body" rows="3"
+                    placeholder="Scrivi il tuo messaggio..."></textarea>
+                  <div id="messageError" class="error text-danger ms-1" style="display: none">Inserisci il messaggio
+                  </div>
                 </div>
 
                 <div class="mt-3">
@@ -296,9 +343,13 @@ export default {
 </template>
 
 <style lang="scss">
+.service-container {
+  height: 300px;
+}
+
 .map {
   width: 100%;
-  height: 200px;
+  height: 350px;
   // aspect-ratio: 16/9;
 }
 

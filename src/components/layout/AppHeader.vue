@@ -13,7 +13,7 @@
           <span class="me-3">Se sei un Host di Bien-Bì</span>
           <a href="http://127.0.0.1:8000" class="my_btn">Accedi qui</a>
         </div>
-        <div class="d-lg-none">
+        <div class="d-lg-none text-end">
           <span class="me-3">Se sei un Host?</span>
           <a href="http://127.0.0.1:8000" class="my_btn">Accedi</a>
         </div>
