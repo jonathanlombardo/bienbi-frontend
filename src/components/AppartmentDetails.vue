@@ -46,8 +46,15 @@ export default {
 
         let isValid = true;
         console.log(this.message);
-        if (this.message.response) {
-          (this.feedbackMessage = "Messaggio inviato correttamente"), (this.UIname = ""), (this.UIlast_name = ""), (this.UImail = ""), (this.body = "");
+        if(this.message.response){
+          this.feedbackMessage = 'Messaggio inviato correttamente';
+          this.UIname = '';
+          this.UIlast_name = '';
+          this.UImail = '';
+          this.body = '';
+          setTimeout(()=>{
+            this.feedbackMessage = ''
+          }, 1500)
         } else {
           console.log(this.message.message);
           if (this.message.message == "name") {
@@ -140,6 +147,14 @@ export default {
         this.sendMessage();
       }
     },
+
+    handleMessageClick(){
+      document.getElementById("nameError").style.display = 'none';
+      document.getElementById("lastNameError").style.display = 'none';
+      document.getElementById("emailError").style.display = 'none';
+      document.getElementById("messageError").style.display = 'none';
+      this.feedbackMessage = '';
+    }
   },
 
   created() {
@@ -207,7 +222,8 @@ export default {
         </div>
       </div>
       <!-- trigger button -->
-      <button class="btn my_btn btn-message position-absolute" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+      <button class="btn my_btn btn-message position-absolute" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
         <i class="fa-regular fa-message"></i>
       </button>
       <!-- offcanvas -->
