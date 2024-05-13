@@ -234,7 +234,7 @@ export default {
             Servizi
           </button>
 
-          <div class="collapse d-md-none" id="collapseExample">
+          <div class="collapse d-md-none mt-4" id="collapseExample">
             <div class="card card-body">
               <div class="form-label fw-bold m-2">Servizi</div>
               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 my-3">

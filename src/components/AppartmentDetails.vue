@@ -200,9 +200,9 @@ export default {
 
         <div class="col-12 p-3">
 
-          <div class="row align-items-center justify-content-center h-100">
+          <div class="row align-items-start justify-content-center h-100">
 
-            <div class="col-12 col-md-6 h-100">
+            <div class="col-12 col-lg-6">
 
               <div class="row">
 
@@ -238,18 +238,18 @@ export default {
 
             </div>
 
-            <div class="col-12 col-md-6 h-100">
+            <div class="col-12 col-lg-6">
 
               <div class="row flex-column justify-content-start">
 
 
 
-                <div>
+                <div class="col-12">
 
                   <strong class="me-1">Servizi: </strong>
 
-                  <ul class="d-flex flex-column flex-md-wrap service-container p-0 m-0">
-                    <li v-for="service in appartment.services" class="d-flex align-items-center my-3 p-0">
+                  <ul class="row flex-md-wrap p-0 m-0">
+                    <li v-for="service in appartment.services" class="col-6 d-flex align-items-center my-3 p-0">
                       <i :class="service.faIconClass" class="px-1 me-2 fs-4"></i><span class="service_label me-1">{{
                         service.label }}</span>
                     </li>
@@ -265,7 +265,7 @@ export default {
         </div>
       </div>
       <!-- trigger button -->
-      <button class="btn my_btn btn-message position-absolute" type="button" data-bs-toggle="offcanvas"
+      <button class="btn my_btn btn-message position-fixed" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
         <i class="fa-regular fa-message"></i>
       </button>
@@ -398,8 +398,8 @@ export default {
 }
 
 .btn-message {
-  bottom: 5%;
-  right: 3%;
+  bottom: 4%;
+  right: 4%;
   border-radius: 50%;
   width: 50px;
   height: 50px;
