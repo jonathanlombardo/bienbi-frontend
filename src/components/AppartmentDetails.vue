@@ -51,7 +51,10 @@ export default {
           this.UIname = '',
           this.UIlast_name = '',
           this.UImail = '',
-          this.body = ''
+          this.body = '',
+          setTimeout(()=>{
+            this.feedbackMessage = ''
+          }, 1500)
         } else {
           console.log(this.message.message);
           if(this.message.message == 'name'){
@@ -144,6 +147,14 @@ export default {
         // document.getElementById("myForm").submit();
         this.sendMessage();
       }
+    },
+
+    handleMessageClick(){
+      document.getElementById("nameError").style.display = 'none';
+      document.getElementById("lastNameError").style.display = 'none';
+      document.getElementById("emailError").style.display = 'none';
+      document.getElementById("messageError").style.display = 'none';
+      this.feedbackMessage = '';
     }
   },
 
@@ -212,7 +223,7 @@ export default {
       </div>
       <!-- trigger button -->
       <button class="btn my_btn btn-message position-absolute" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
         <i class="fa-regular fa-message"></i>
       </button>
       <!-- offcanvas -->
