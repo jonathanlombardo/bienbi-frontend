@@ -9,9 +9,9 @@ export default {
       UIname: '',
       UIlast_name: '',
       UImail: '',
-      message: '',
+      body: '',
       feedbackMessage: '',
-
+      message: false,
     };
   },
   methods: {
@@ -33,18 +33,55 @@ export default {
       params.first_name = this.UIname
       params.last_name = this.UIlast_name
       params.mail = this.UImail
-      params.body = this.message
+      params.body = this.body
       console.log(params)
       console.log(endpoint)
 
       axios.post(endpoint, params).then((response) =>{
-        console.log(response.data)
-        if(response.data.response){
+        this.message = response.data;
+        let nameError = document.getElementById("nameError");
+        let lastNameError = document.getElementById("lastNameError");
+        let emailError = document.getElementById("emailError");
+        let messageError = document.getElementById("messageError");
+
+        let isValid = true;
+        console.log(this.message);
+        if(this.message.response){
           this.feedbackMessage = 'Messaggio inviato correttamente',
           this.UIname = '',
           this.UIlast_name = '',
           this.UImail = '',
-          this.message = ''
+          this.body = ''
+        } else {
+          console.log(this.message.message);
+          if(this.message.message == 'name'){
+            nameError.style.display = "block";
+            isValid = false;
+          } else {
+            nameError.style.display = "none";
+          }
+
+          if(this.message.message == 'lastname'){
+            lastNameError.style.display = "block";
+            isValid = false;
+          } else {
+            lastNameError.style.display = "none";
+          }
+
+          if(this.message.message == 'mail'){
+            emailError.style.display = "block";
+            isValid = false;
+          } else {
+            emailError.style.display = "none";
+          }
+
+          if(this.message.message == 'body'){
+            messageError.style.display = "block";
+            isValid = false;
+          } else {
+            messageError.style.display = "none";
+          }
+
         }
       })
     },
@@ -53,7 +90,8 @@ export default {
       let name = document.getElementById("name").value;
       let lastName = document.getElementById("last_name").value;
       let email = document.getElementById("email").value;
-      let message = document.getElementById("message").value;
+      let emailArray = email.split('');
+      let body = document.getElementById("body").value;
 
       let nameError = document.getElementById("nameError");
       let lastNameError = document.getElementById("lastNameError");
@@ -63,36 +101,48 @@ export default {
       let isValid = true;
 
       if (name === "") {
-          nameError.style.display = "block";
-          isValid = false;
+        nameError.style.display = "block";
+        isValid = false;
       } else {
-          nameError.style.display = "none";
+        nameError.style.display = "none";
       }
 
       if (lastName === "") {
-          lastNameError.style.display = "block";
-          isValid = false;
+        lastNameError.style.display = "block";
+        isValid = false;
       } else {
-          lastNameError.style.display = "none";
+        lastNameError.style.display = "none";
       }
 
-      if (email === "") {
-          emailError.style.display = "block";
-          isValid = false;
+      let atPosition = false;
+      let dotPosition = false;
+
+      for (let i=0; i<email.length; i++) {
+        if(email[i] == '@') atPosition = i;
+        if(email[i] == '.') dotPosition = i;
+      }
+      console.log(atPosition, dotPosition);
+      if (!email || !atPosition || !dotPosition || dotPosition<atPosition) {
+        emailError.style.display = "block";
+        isValid = false;
+        console.log(isValid);
+        console.log(emailArray);
       } else {
-          emailError.style.display = "none";
+        emailError.style.display = "none";
+        console.log(isValid);
       }
 
-      if (message === "") {
-          messageError.style.display = "block";
-          isValid = false;
+      if (body === "") {
+        messageError.style.display = "block";
+        isValid = false;
       } else {
-          messageError.style.display = "none";
+        messageError.style.display = "none";
       }
 
       if (isValid) {
-          // Invia il form solo se tutti i campi sono validi
-          document.getElementById("myForm").submit();
+        // Invia il form solo se tutti i campi sono validi
+        // document.getElementById("myForm").submit();
+        this.sendMessage();
       }
     }
   },
@@ -174,8 +224,8 @@ export default {
         </div>
 
         <div class="row g-1">
-          <img src="/public/img/appartment_placeholder.jpg" alt="" class="img-fluid">
-          <div class="text-center my-1">
+          <!-- <img src="/img/appartment_placeholder.jpg" alt="" class="img-fluid"> -->
+          <div class="text-center my-1" v-if="appartment">
             <strong>Proprietario: </strong>
             {{ appartment.user.name }}
             {{ appartment.user.last_name }}
@@ -185,7 +235,7 @@ export default {
         <div :class="feedbackMessage ? 'd-none' : 'd-block'">
           <div class="offcanvas-body p-3">
             <div>
-              <div class="mb-2 font_size"> 
+              <div class="mb-4 font_size"> 
                 Tutti i campi contrasseganti con * sono obbligatori.
               </div>
               <!-- form di contatto -->
@@ -204,20 +254,20 @@ export default {
                   </div>
                 </div>
     
-                <div class="mt-2">
+                <div class="my-4">
                   <label for="email" class="form-label">Email*</label>
-                  <input v-model="UImail" type="email" class="form-control" id="email" placeholder="Email">
+                  <input v-model="UImail" type="text" class="form-control" id="email" placeholder="Email">
                   <div id="emailError" class="error text-danger ms-1" style="display: none;">Inserisci la mail</div>
                 </div>
       
                 <div class="mt-2">
-                  <label for="message" class="form-label">Messaggio*</label>
-                  <textarea v-model="message" class="form-control" id="message" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
+                  <label for="body" class="form-label">Messaggio*</label>
+                  <textarea v-model="body" class="form-control" id="body" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
                   <div id="messageError" class="error text-danger ms-1" style="display: none;">Inserisci il messaggio</div>
                 </div>
   
                 <div class="mt-3">
-                  <button class="btn my_btn" type="button" @click="sendMessage(), validateForm()">
+                  <button class="btn my_btn" type="button" @click="validateForm()">
                     Invia
                   </button>
                 </div>
