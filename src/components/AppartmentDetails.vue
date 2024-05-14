@@ -20,10 +20,17 @@ export default {
   methods: {
     fetchAppartmentDetails(endpoint = api.baseUrl + "appartments/" + this.$route.params.appartmentSlug) {
       axios.get(endpoint).then((response) => {
+        console.group("RISPOSTA API fetchAppartmentDetails");
         console.log(response);
+        console.groupEnd();
+
         this.appartment = response.data;
         this.appartment.lat = parseFloat(this.appartment.lat);
         this.appartment.long = parseFloat(this.appartment.long);
+
+        if (this.appartment) {
+          this.setView(this.appartment.id);
+        }
       });
     },
 
@@ -47,14 +54,14 @@ export default {
         let isValid = true;
         console.log(this.message);
         if (this.message.response) {
-          this.feedbackMessage = 'Messaggio inviato correttamente';
-          this.UIname = '';
-          this.UIlast_name = '';
-          this.UImail = '';
-          this.body = '';
+          this.feedbackMessage = "Messaggio inviato correttamente";
+          this.UIname = "";
+          this.UIlast_name = "";
+          this.UImail = "";
+          this.body = "";
           setTimeout(() => {
-            this.feedbackMessage = ''
-          }, 1500)
+            this.feedbackMessage = "";
+          }, 1500);
         } else {
           console.log(this.message.message);
           if (this.message.message == "name") {
@@ -149,16 +156,37 @@ export default {
     },
 
     handleMessageClick() {
-      document.getElementById("nameError").style.display = 'none';
-      document.getElementById("lastNameError").style.display = 'none';
-      document.getElementById("emailError").style.display = 'none';
-      document.getElementById("messageError").style.display = 'none';
-      this.feedbackMessage = '';
-    }
+      document.getElementById("nameError").style.display = "none";
+      document.getElementById("lastNameError").style.display = "none";
+      document.getElementById("emailError").style.display = "none";
+      document.getElementById("messageError").style.display = "none";
+      this.feedbackMessage = "";
+    },
+
+    setView(id) {
+      // recupero l'ip
+      axios.get("https://api.ipify.org/?format=json").then((res) => {
+        console.log(res.data.ip);
+        // setto i parametri
+        const params = {
+          id: id,
+          ip: res.data.ip,
+        };
+
+        // aggiungo la view all'appartamento
+        axios.post(api.baseUrl + "views", params).then((res) => {
+          //loggo la risposta
+          console.group("RISPOSTA API VIEW");
+          console.log(res.data);
+          console.groupEnd();
+        });
+      });
+    },
   },
 
   created() {
     this.fetchAppartmentDetails();
+
     // console.log(this.appartment);
   },
 };
@@ -170,8 +198,8 @@ export default {
       <div class="d-flex justify-content-center mb-3">
         <div class="text-start">
           <h2 class="text-center show_title m-0">{{ appartment.title }}</h2>
-          <div><i>di {{ appartment ? appartment.user.name + " " +
-            appartment.user.last_name : "" }}</i>
+          <div>
+            <i>di {{ appartment ? appartment.user.name + " " + appartment.user.last_name : "" }}</i>
           </div>
         </div>
       </div>
@@ -228,8 +256,7 @@ export default {
                   <strong class="me-1">Servizi: </strong>
                   <ul class="row flex-md-wrap p-0 m-0">
                     <li v-for="service in appartment.services" class="col-6 d-flex align-items-center my-3 p-0">
-                      <i :class="service.faIconClass" class="px-1 me-2 fs-4"></i><span class="service_label me-1">{{
-                        service.label }}</span>
+                      <i :class="service.faIconClass" class="px-1 me-2 fs-4"></i><span class="service_label me-1">{{ service.label }}</span>
                     </li>
                   </ul>
                 </div>
@@ -239,18 +266,16 @@ export default {
         </div>
       </div>
       <!-- trigger button -->
-      <button class="btn my_btn btn-message position-fixed d-lg-none" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
+      <button class="btn my_btn btn-message position-fixed d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
         <i class="fa-regular fa-message"></i>
       </button>
 
       <div class="d-flex justify-content-end m-3">
-        <button class="btn my_btn d-none d-lg-inline" type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
+        <button class="btn my_btn d-none d-lg-inline" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
           <i class="fa-regular fa-message"></i>
         </button>
       </div>
-     
+
       <!-- offcanvas -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header justify-content-between">
@@ -282,10 +307,8 @@ export default {
 
                   <div>
                     <label for="last_name" class="form-label">Cognome*</label>
-                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name"
-                      placeholder="Cognome" />
-                    <div id="lastNameError" class="error text-danger ms-1" style="display: none">Inserisci il tuo
-                      cognome</div>
+                    <input v-model="UIlast_name" type="last_name" class="form-control" id="last_name" placeholder="Cognome" />
+                    <div id="lastNameError" class="error text-danger ms-1" style="display: none">Inserisci il tuo cognome</div>
                   </div>
                 </div>
 
@@ -297,10 +320,8 @@ export default {
 
                 <div class="mt-2">
                   <label for="body" class="form-label">Messaggio*</label>
-                  <textarea v-model="body" class="form-control" id="body" rows="3"
-                    placeholder="Scrivi il tuo messaggio..."></textarea>
-                  <div id="messageError" class="error text-danger ms-1" style="display: none">Inserisci il messaggio
-                  </div>
+                  <textarea v-model="body" class="form-control" id="body" rows="3" placeholder="Scrivi il tuo messaggio..."></textarea>
+                  <div id="messageError" class="error text-danger ms-1" style="display: none">Inserisci il messaggio</div>
                 </div>
 
                 <div class="mt-3">
@@ -404,7 +425,7 @@ export default {
   color: green;
 }
 
-.fa-message{
+.fa-message {
   font-size: 1.6rem;
 }
 </style>
