@@ -215,7 +215,7 @@ export default {
 
         <div class="col-12 my-2 d-none d-md-block">
           <div class="form-label fw-bold m-2">Servizi</div>
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 my-3">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 my-3">
             <div v-for="service of services" class="col">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" :id="'service' + service.id"
