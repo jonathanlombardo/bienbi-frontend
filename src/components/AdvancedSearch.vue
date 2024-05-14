@@ -276,20 +276,16 @@ export default {
 
 <style lang="scss">
 #desktop-service-row {
-  $serviceEl: v-bind(serviceN);
-  $serviceHeight: 26px;
-  $serviceCol: 2;
+  --serviceEl: v-bind(serviceN);
+  --serviceHeight: 26px;
+  --serviceCol: 2;
 
-  height: calc($serviceHeight * ($serviceEl / $serviceCol) - ($serviceHeight / $serviceCol) + $serviceHeight);
+  height: calc(var(--serviceHeight) * (var(--serviceEl) / var(--serviceCol)) - (var(--serviceHeight) / var(--serviceCol)) + var(--serviceHeight));
 }
 
 @media only screen and (min-width: 1140px) {
   #desktop-service-row {
-    $serviceEl: v-bind(serviceN);
-    $serviceHeight: 26px;
-    $serviceCol: 3;
-
-    height: calc($serviceHeight * ($serviceEl / $serviceCol) - ($serviceHeight / $serviceCol) + $serviceHeight);
+    --serviceCol: 3;
   }
 }
 
