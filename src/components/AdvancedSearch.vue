@@ -221,8 +221,7 @@ export default {
                 <input class="form-check-input" type="checkbox" :id="'service' + service.id"
                   @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
                 <!-- icona servizi -->
-                <!-- <span><i :class="service.faIconClass"></i></span> -->
-                <label class="form-check-label text-nowrap" :for="'service' + service.id">{{ service.label }}</label>
+                <label class="form-check-label text-nowrap" :for="'service' + service.id"><div class="icon-container"><i :class="service.faIconClass" class="me-2"></i></div>{{ service.label }}</label>
               </div>
             </div>
           </div>
@@ -273,6 +272,12 @@ export default {
 </template>
 
 <style lang="scss">
+
+.icon-container{
+  width: 40px;
+  text-align: center;
+  display: inline-block;
+}
 .jumbo {
   display: flex;
   background: linear-gradient(90deg, rgb(226, 199, 137) 10%, rgba(255, 179, 14, 1) 48%, rgba(243, 78, 57, 1) 97%);
