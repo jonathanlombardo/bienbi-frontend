@@ -19,12 +19,17 @@ export default {
         lat: this.$route.query.lat,
         long: this.$route.query.long,
       },
+      defaultAddress: "Milano",
+      defaultRadius: 30000,
+      defaultLat: 45.463618,
+      defaultLong: 9.18951,
       address: this.$route.query.address,
     };
   },
 
   computed: {
     radiusKm() {
+      this.activeFilter.radius = this.activeFilter.radius ?? this.defaultRadius;
       return Math.floor(this.activeFilter.radius / 1000);
     },
   },
@@ -38,9 +43,9 @@ export default {
         for (const [key, value] of Object.entries(this.activeFilter)) {
           query[key] = value;
         }
-        query.lat = query.lat ?? 45.463618;
-        query.long = query.long ?? 9.18951;
-        query.radius = query.radius ?? 30000;
+        query.lat = query.lat ?? this.defaultLat;
+        query.long = query.long ?? this.defaultLong;
+        query.radius = query.radius ?? this.defaultRadius;
 
         this.$router.push({ name: "ricerca-avanzata", query: query });
         this.$route.query = query;
@@ -68,9 +73,9 @@ export default {
         params[key] = value;
       }
 
-      params.lat = params.lat ?? 45.463618;
-      params.long = params.long ?? 9.18951;
-      params.radius = params.radius ?? 30000;
+      params.lat = params.lat ?? this.defaultLat;
+      params.long = params.long ?? this.defaultLong;
+      params.radius = params.radius ?? this.defaultRadius;
 
       axios
         .get(endpoint, {
@@ -162,7 +167,7 @@ export default {
     <div class="container">
       <div class="w-75 m-auto">
         <TomTomSearchbox :placeholder="address" class="my-3" @returnAddress="updatePosition"
-          :inputValue="this.$route.query.address"></TomTomSearchbox>
+          :inputValue="address"></TomTomSearchbox>
       </div>
       <div class="row">
         <div class="col p-3">
@@ -261,7 +266,7 @@ export default {
 
   <section class="my-5">
     <div class="container">
-      <h2 v-if="store.searchedAppartments.length" class="text-center mb-5">Risultati nelle vicinanze di {{ address }}
+      <h2 v-if="store.searchedAppartments.length" class="text-center mb-5">Risultati nelle vicinanze di {{ address ?? defaultAddress }}
       </h2>
       <h2 v-else class="text-center mb-5">Nessun risultato con i criteri inseriti</h2>
       <div class="row g-4">
