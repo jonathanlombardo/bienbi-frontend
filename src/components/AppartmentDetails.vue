@@ -239,10 +239,18 @@ export default {
         </div>
       </div>
       <!-- trigger button -->
-      <button class="btn my_btn btn-message position-fixed" type="button" data-bs-toggle="offcanvas"
+      <button class="btn my_btn btn-message position-fixed d-lg-none" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
         <i class="fa-regular fa-message"></i>
       </button>
+
+      <div class="d-flex justify-content-end m-3">
+        <button class="btn my_btn d-none d-lg-inline" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
+          <i class="fa-regular fa-message"></i>
+        </button>
+      </div>
+     
       <!-- offcanvas -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header justify-content-between">
