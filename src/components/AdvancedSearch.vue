@@ -243,7 +243,7 @@ export default {
                       @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
                     <!-- icona servizi -->
                     <!-- <span><i :class="service.faIconClass"></i></span> -->
-                    <label class="form-check-label text-nowrap" :for="'service' + service.id">{{ service.label
+                    <label class="form-check-label" :for="'service' + service.id">{{ service.label
                       }}</label>
                   </div>
                 </div>

@@ -165,7 +165,7 @@ export default {
 </script>
 
 <template>
-  <section class="pb-4">
+  <section class="pb-4" v-if="appartment">
     <div class="container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
       <div class="d-flex justify-content-center mb-3">
         <div class="text-start">
