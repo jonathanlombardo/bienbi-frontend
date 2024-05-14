@@ -165,7 +165,7 @@ export default {
 </script>
 
 <template>
-  <section class="pb-4">
+  <section class="pb-4" v-if="appartment">
     <div class="container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
       <div class="d-flex justify-content-center mb-3">
         <div class="text-start">
@@ -173,9 +173,7 @@ export default {
           <div><i>di {{ appartment ? appartment.user.name + " " +
             appartment.user.last_name : "" }}</i>
           </div>
-
         </div>
-
       </div>
       <!-- <TomTomMap class="map mb-4" v-if="appartment" :lat="appartment.lat" :long="appartment.long" /> -->
       <div class="row flex-column flex-md-row">
@@ -186,26 +184,14 @@ export default {
         </div>
 
         <div class="col-12 col-md-6 mt-3 mt-md-0">
-
-
-
-
           <TomTomMap class="map" v-if="appartment" :lat="appartment.lat" :long="appartment.long" />
           <div class="mb-2 opacity-75">{{ appartment.address }}</div>
-
-
-
-
         </div>
 
         <div class="col-12 p-3">
-
           <div class="row align-items-start justify-content-center h-100">
-
             <div class="col-12 col-lg-6">
-
               <div class="row">
-
                 <div class="col-6 px-2">
                   <div class="rooms_container">
                     <img src="/img/stanze.png" alt="" class="w-100 p-3" />
@@ -233,42 +219,38 @@ export default {
                     <div class="text-center"><strong>Mq: </strong>{{ appartment.square_meters }}</div>
                   </div>
                 </div>
-
               </div>
-
             </div>
 
             <div class="col-12 col-lg-6">
-
               <div class="row flex-column justify-content-start">
-
-
-
                 <div class="col-12">
-
                   <strong class="me-1">Servizi: </strong>
-
                   <ul class="row flex-md-wrap p-0 m-0">
                     <li v-for="service in appartment.services" class="col-6 d-flex align-items-center my-3 p-0">
                       <i :class="service.faIconClass" class="px-1 me-2 fs-4"></i><span class="service_label me-1">{{
                         service.label }}</span>
                     </li>
                   </ul>
-
                 </div>
-
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
       <!-- trigger button -->
-      <button class="btn my_btn btn-message position-fixed" type="button" data-bs-toggle="offcanvas"
+      <button class="btn my_btn btn-message position-fixed d-lg-none" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
         <i class="fa-regular fa-message"></i>
       </button>
+
+      <div class="d-flex justify-content-end m-3">
+        <button class="btn my_btn d-none d-lg-inline" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click="handleMessageClick()">
+          <i class="fa-regular fa-message"></i>
+        </button>
+      </div>
+     
       <!-- offcanvas -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header justify-content-between">
@@ -401,8 +383,8 @@ export default {
   bottom: 4%;
   right: 4%;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
 }
 
 .font_size {
@@ -420,5 +402,9 @@ export default {
 .icona {
   font-size: 10rem;
   color: green;
+}
+
+.fa-message{
+  font-size: 1.6rem;
 }
 </style>
