@@ -16,7 +16,7 @@ export default {
   methods: {
     fetchSponsoredAppartment(endpoint = api.baseUrl + "appartments") {
       axios.get(endpoint).then((res) => {
-        store.sponsoredAppartments = res.data;
+        store.sponsoredAppartments = res.data.data;
         console.log(store.sponsoredAppartments);
       });
     },
@@ -44,7 +44,7 @@ export default {
 main {
   background-image: url();
   background-repeat: no-repeat;
-  background-size: cover
+  background-size: cover;
 }
 
 h1 {

@@ -94,8 +94,10 @@ export default {
           params: params,
         })
         .then((res) => {
-          store.searchedAppartments = res.data;
+          store.searchedAppartments = res.data.data;
+          console.group("API APPARTMENTS FILTERED RESULT");
           console.log(res.data);
+          console.groupEnd();
         });
     },
 
