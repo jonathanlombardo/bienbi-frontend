@@ -5,7 +5,7 @@ export const api = {
 };
 
 export const store = reactive({
-	sponsoredAppartments: [],
+	sponsoredAppartments: false,
 	appartment: {},
 	searchedAppartments: false,
 	services: [],

@@ -1,6 +1,7 @@
 <script>
 import AppSearch from "../AppSearch.vue";
 import AppCard from "../AppCard.vue";
+import AppLoader from "../AppLoader.vue"
 import axios from "axios";
 import { api, store } from "../../store";
 import CollectionPaginator from "../CollectionPaginator.vue";
@@ -19,7 +20,7 @@ export default {
     },
   },
 
-  components: { AppSearch, AppCard, CollectionPaginator },
+  components: { AppSearch, AppCard, CollectionPaginator, AppLoader },
 
   methods: {
     changePage(endpoint, page) {
@@ -60,10 +61,15 @@ export default {
   <AppSearch></AppSearch>
   <main>
     <div class="container">
-      <h1 class="my-4">Potrebbero interessarti...</h1>
-      <div class="row g-4">
-        <AppCard v-for="appartment in store.sponsoredAppartments" :appartment="appartment"></AppCard>
+      <div class="row g-4 pt-4" v-if="store.sponsoredAppartments">
+      <h1>Potrebbero interessarti...</h1>
+
+        <AppCard  v-for="appartment in store.sponsoredAppartments"
+          :appartment="appartment"></AppCard>
+
       </div>
+      <AppLoader v-else></AppLoader>
+
       <CollectionPaginator v-if="appartmentCollection" :collection="appartmentCollection" @linkClicked="changePage" />
     </div>
   </main>
