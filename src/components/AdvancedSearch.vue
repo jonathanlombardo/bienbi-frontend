@@ -4,6 +4,7 @@ import axios from "axios";
 import { api, store } from "../store";
 import TomTomSearchbox from "./TomTomSearchbox.vue";
 import CollectionPaginator from "./CollectionPaginator.vue";
+import { watch } from "vue";
 
 export default {
   data() {
@@ -39,6 +40,20 @@ export default {
       return this.services.length;
     },
   },
+  watch: {
+    $route() {
+      this.services.forEach((service) => {
+        const serviceId = "service" + service.id;
+        // console.log(this.$route.query[serviceId]);
+        if (this.$route.query[serviceId] === "true") {
+          this.activeFilter[serviceId] = true;
+        } else {
+          this.activeFilter[serviceId] = false;
+        }
+      });
+      this.fetchSearchedAppartment();
+    },
+  },
 
   methods: {
     changePage(url, page) {
@@ -53,7 +68,7 @@ export default {
 
       this.$router.push({ name: "ricerca-avanzata", query: query });
       this.$route.query = query;
-      this.fetchSearchedAppartment();
+      // this.fetchSearchedAppartment();
     },
 
     newFilter() {
@@ -62,7 +77,7 @@ export default {
       this.clock = setTimeout(() => {
         const query = {};
         for (const [key, value] of Object.entries(this.activeFilter)) {
-          query[key] = value;
+          if (value) query[key] = value;
         }
         query.lat = query.lat ?? this.defaultLat;
         query.long = query.long ?? this.defaultLong;
@@ -70,7 +85,8 @@ export default {
 
         this.$router.push({ name: "ricerca-avanzata", query: query });
         this.$route.query = query;
-        this.fetchSearchedAppartment();
+
+        // this.fetchSearchedAppartment();
       }, 800);
     },
 

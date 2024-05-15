@@ -23,9 +23,9 @@ export default {
 </script>
 
 <template>
-  <div v-if="collection.length != 0" class="wrapper">
+  <div v-if="collection.length != 0 && collection.total > collection.per_page" class="wrapper">
     <div class="fst-italic fs-6">
-      Showed <span class="fw-medium">{{ collection.per_page }}</span> resuts. From <span class="fw-medium">{{ collection.from }}</span> to <span class="fw-medium">{{ collection.to }}</span>
+      Mostrat{{ collection.data.length < 2 ? "o" : "i" }} <span class="fw-medium">{{ collection.data.length }}</span> risultat{{ collection.data.length < 2 ? "o" : "i" }}. Da <span class="fw-medium">{{ collection.from }}</span> a <span class="fw-medium">{{ collection.to }}</span>
     </div>
     <nav aria-label="Page navigation">
       <ul class="pagination pagination-sm">

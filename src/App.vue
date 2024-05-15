@@ -13,7 +13,7 @@ export default {
 <template>
   <AppHeader></AppHeader>
   <div class="main-wrapper">
-    <router-view :key="$route.query.page ?? 1"></router-view>
+    <router-view></router-view>
   </div>
   <AppFooter></AppFooter>
 </template>

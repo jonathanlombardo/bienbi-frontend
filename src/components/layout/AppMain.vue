@@ -13,6 +13,12 @@ export default {
     };
   },
 
+  watch: {
+    $route() {
+      this.fetchSponsoredAppartment();
+    },
+  },
+
   components: { AppSearch, AppCard, CollectionPaginator },
 
   methods: {
@@ -23,7 +29,7 @@ export default {
 
       this.$router.push({ name: "home", query: query });
       this.$route.query = query;
-      this.fetchSponsoredAppartment(endpoint);
+      this.fetchSponsoredAppartment();
     },
 
     fetchSponsoredAppartment(endpoint = api.baseUrl + "appartments") {
