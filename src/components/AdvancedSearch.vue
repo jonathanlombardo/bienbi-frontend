@@ -3,11 +3,13 @@ import AppCard from "./AppCard.vue";
 import axios from "axios";
 import { api, store } from "../store";
 import TomTomSearchbox from "./TomTomSearchbox.vue";
+import CollectionPaginator from "./CollectionPaginator.vue";
 
 export default {
   data() {
     return {
       store,
+      appartmentCollection: false,
       clock: false,
       services: [],
       activeFilter: {
@@ -39,6 +41,21 @@ export default {
   },
 
   methods: {
+    changePage(url, page) {
+      const query = {};
+      for (const [key, value] of Object.entries(this.activeFilter)) {
+        query[key] = value;
+      }
+      query.lat = query.lat ?? this.defaultLat;
+      query.long = query.long ?? this.defaultLong;
+      query.radius = query.radius ?? this.defaultRadius;
+      query.page = page;
+
+      this.$router.push({ name: "ricerca-avanzata", query: query });
+      this.$route.query = query;
+      this.fetchSearchedAppartment();
+    },
+
     newFilter() {
       clearTimeout(this.clock);
 
@@ -95,6 +112,7 @@ export default {
         })
         .then((res) => {
           store.searchedAppartments = res.data.data;
+          this.appartmentCollection = res.data;
           console.group("API APPARTMENTS FILTERED RESULT");
           console.log(res.data);
           console.groupEnd();
@@ -168,7 +186,7 @@ export default {
     // console.log(this.activeFilter.service1);
   },
 
-  components: { AppCard, TomTomSearchbox },
+  components: { AppCard, TomTomSearchbox, CollectionPaginator },
 };
 </script>
 
@@ -272,6 +290,7 @@ export default {
       <div class="row g-4">
         <AppCard v-for="appartment in store.searchedAppartments" :appartment="appartment"></AppCard>
       </div>
+      <CollectionPaginator v-if="appartmentCollection" :collection="appartmentCollection" @linkClicked="changePage" />
     </div>
   </section>
 </template>

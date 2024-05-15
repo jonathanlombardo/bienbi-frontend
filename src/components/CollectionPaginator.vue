@@ -7,15 +7,17 @@ export default {
   emits: ["linkClicked"],
 
   methods: {
-    linkClickHandle(url) {
-      if (url) this.$emit("linkClicked", url);
+    linkClickHandle(url, label) {
+      if (url) this.$emit("linkClicked", url, label);
     },
   },
 
   components: {},
 
   created() {
+    console.group("collection");
     console.log(this.collection);
+    console.groupEnd();
   },
 };
 </script>
@@ -27,7 +29,7 @@ export default {
     </div>
     <nav aria-label="Page navigation">
       <ul class="pagination pagination-sm">
-        <li v-for="(link, index) in collection.links" class="page-item" :class="{ active: link.active }" @click="linkClickHandle(link.url)">
+        <li v-for="(link, index) in collection.links" class="page-item" :class="{ active: link.active }" @click="linkClickHandle(link.url, link.label)">
           <a v-if="index == 0" class="page-link" :class="{ disabled: !link.url }" href="javascript:void(0)" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
@@ -48,5 +50,16 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.active > .page-link,
+.page-link.active {
+  background-color: #f34e39;
+  border-color: #f34e39;
+  color: white;
+}
+
+.page-link {
+  color: #f34e39;
 }
 </style>
