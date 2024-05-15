@@ -2,6 +2,7 @@
 import axios from "axios";
 import { api } from "../store";
 import TomTomMap from "./TomTomMap.vue";
+import AppLoader from "./AppLoader.vue"
 
 export default {
   data() {
@@ -16,7 +17,7 @@ export default {
     };
   },
 
-  components: { TomTomMap },
+  components: { TomTomMap, AppLoader },
   methods: {
     fetchAppartmentDetails(endpoint = api.baseUrl + "appartments/" + this.$route.params.appartmentSlug) {
       axios.get(endpoint).then((response) => {
@@ -343,6 +344,12 @@ export default {
       </div>
     </div>
   </section>
+  
+  <section class="pb-4" v-else>
+    <div class="container my-loading-container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
+      <AppLoader></AppLoader>
+    </div>
+  </section>
 </template>
 
 <style lang="scss">
@@ -360,6 +367,15 @@ export default {
   background-color: #f3f3f3;
   border: none;
   padding: 15px;
+}
+
+
+
+.my-loading-container{
+  height: 822px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .show_title {
