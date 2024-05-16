@@ -5,6 +5,13 @@ import AppMain from "./components/layout/AppMain.vue";
 import AppartmentDetails from "./components/AppartmentDetails.vue";
 
 const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll 10px above the element #main
+    return {
+      // 10px above the element
+      top: 1,
+    }
+  },
   history: createWebHistory(),
   routes: [
     {
@@ -13,12 +20,12 @@ const router = createRouter({
       component: AppMain,
     },
     {
-      path: "/ricerca-avanzata",
+      path: "/ricerca-avanzata/",
       name: "ricerca-avanzata",
       component: AdvancedSearch,
     },
     {
-      path: "/appartment-details/:appartmentSlug",
+      path: "/appartment-details/:appartmentSlug/:from",
       name: "appartmentDetails",
       component: AppartmentDetails,
     },

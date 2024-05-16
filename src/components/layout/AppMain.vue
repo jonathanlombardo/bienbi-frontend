@@ -62,10 +62,13 @@ export default {
   <main>
     <div class="container">
       <div class="row g-4 pt-4" v-if="store.sponsoredAppartments">
-      <h1>Potrebbero interessarti...</h1>
-
-        <AppCard  v-for="appartment in store.sponsoredAppartments"
-          :appartment="appartment"></AppCard>
+        <h1>Potrebbero interessarti...</h1>
+        <router-link class="col-lg-3 col-sm-6 col-12 my-4 px-5 px-sm-2"  v-for="appartment in store.sponsoredAppartments"  :to="{
+          name: 'appartmentDetails',
+          params: { appartmentSlug: appartment.slug, from: 'from-homepage' },
+        }" >
+          <AppCard :appartment="appartment"></AppCard>
+        </router-link>
 
       </div>
       <AppLoader v-else></AppLoader>

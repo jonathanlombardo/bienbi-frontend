@@ -221,7 +221,8 @@ export default {
       <div class="row">
         <div class="col p-3">
           <div class="p-3">
-            <label for="customRange1" class="form-label fw-bold  text-nowrap">Raggio di ricerca: {{ radiusKm }} Km </label>
+            <label for="customRange1" class="form-label fw-bold  text-nowrap">Raggio di ricerca: {{ radiusKm }} Km
+            </label>
           </div>
           <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000"
             @input="newFilter()" v-model="activeFilter.radius" />
@@ -272,25 +273,25 @@ export default {
         </div> -->
 
         <div class="col-12 p-3">
-          <button class="btn my_btn" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Servizi</button>
+          <button class="btn my_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">Servizi</button>
 
           <div class="collapse mt-4" id="collapseExample">
             <div class="card card-body">
               <div class="form-label fw-bold m-2">Servizi</div>
-          <div class="row flex-column my-3" id="desktop-service-row">
-            <div v-for="service of services" class="col-auto">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" :id="'service' + service.id"
-                  @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
-                <!-- icona servizi  -->
-                <label class="form-check-label text-nowrap" :for="'service' + service.id">
-                  <div class="icon-container"><i :class="service.faIconClass" class="me-2"></i></div>
-                  {{ service.label }}
-                </label>
+              <div class="row flex-column my-3" id="desktop-service-row">
+                <div v-for="service of services" class="col-auto">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" :id="'service' + service.id"
+                      @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
+                    <!-- icona servizi  -->
+                    <label class="form-check-label text-nowrap" :for="'service' + service.id">
+                      <div class="icon-container"><i :class="service.faIconClass" class="me-2"></i></div>
+                      {{ service.label }}
+                    </label>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
             </div>
           </div>
         </div>
@@ -304,18 +305,23 @@ export default {
         defaultAddress }}</h2>
       <h2 v-else class="text-center mb-5">Nessun risultato con i criteri inseriti</h2>
       <div class="row g-4">
-        <AppCard v-for="appartment in store.searchedAppartments" :appartment="appartment"></AppCard>
+        <router-link class="col-lg-3 col-sm-6 col-12 my-4 px-5 px-sm-2" v-for="appartment in store.searchedAppartments"
+          :to="{
+            name: 'appartmentDetails',
+            params: { appartmentSlug: appartment.slug, from: 'from-ricerca-avanzata' },
+          }">
+          <AppCard  :appartment="appartment"></AppCard>
+        </router-link>
       </div>
       <CollectionPaginator v-if="appartmentCollection" :collection="appartmentCollection" @linkClicked="changePage" />
     </div>
   </section>
   <section v-else>
-      <AppLoader></AppLoader>
+    <AppLoader></AppLoader>
   </section>
 </template>
 
 <style lang="scss">
-
 #desktop-service-row {
   --serviceEl: v-bind(serviceN);
   --serviceHeight: 26px;
