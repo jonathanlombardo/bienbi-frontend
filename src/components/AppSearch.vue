@@ -63,9 +63,11 @@ export default {
 <style lang="scss" scoped>
 .jumbo {
   display: flex;
-  background: linear-gradient(90deg, rgb(226, 199, 137) 10%, rgba(255, 179, 14, 1) 48%, rgba(243, 78, 57, 1) 97%);
+  
   justify-content: space-around;
   margin-top: 0;
+  background-image: url("../../public/img/1950571-sfondo-astratto-di-linee-arancioni-gratuito-vettoriale.jpg");
+  background-size: cover ;
 }
 
 .jumbo img {
@@ -73,7 +75,8 @@ export default {
 }
 
 .coloring-text {
-  color: rgba(243, 78, 57, 1);
+  color: #ffe001;
+  opacity: 1;
 }
 
 h1 {
@@ -83,7 +86,7 @@ h1 {
 .my_btn {
   font-size: 0.9rem;
   text-align: center;
-  background-color: #ffb30e;
+  background-color: #fecb00;
   padding: 6px 10px;
   border: none;
   width: 100px;
@@ -92,10 +95,10 @@ h1 {
   transition: transform 0.5s;
 
   &:hover {
-    background-color: #f34e39;
+    background-color: #ffdf00;
     transform: scale(1.1);
-    box-shadow: 2px 3px 12px #f34e39;
-    color: #fff;
+    box-shadow: 2px 3px 12px #ffdf00;
+    color: #000;
   }
 }
 
