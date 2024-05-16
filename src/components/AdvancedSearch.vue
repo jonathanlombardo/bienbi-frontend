@@ -276,7 +276,7 @@ export default {
             data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Servizi</button>
 
           <div class="collapse mt-4" id="collapseExample">
-            <div class="card card-body">
+            <div class="card card-body my-card">
               <div class="form-label fw-bold m-2">Servizi</div>
           <div class="row flex-column my-3" id="desktop-service-row">
             <div v-for="service of services" class="col-auto">
@@ -394,5 +394,10 @@ export default {
 .form-check-input:checked {
   background-color: #f34e39;
   border-color: #f34e39;
+}
+
+.my-card {
+  background-color: transparent;
+  border: none;
 }
 </style>
