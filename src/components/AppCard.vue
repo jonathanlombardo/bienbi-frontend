@@ -66,6 +66,7 @@ span {
     background-color: #0000003e;
     font-size: 0.8rem;
     color: #ffb30e;
+    font-weight: bold;
   }
 }
 
