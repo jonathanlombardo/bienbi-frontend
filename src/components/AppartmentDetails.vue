@@ -196,6 +196,13 @@ export default {
 <template>
   <section class="pb-4" v-if="appartment">
     <div class="container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
+      
+      <router-link :to="{name: 'ricerca-avanzata'}">
+        <button class="btn my_btn btn-navigator position-absolute text-nowrap" type="button">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+      </router-link>
+
       <div class="d-flex justify-content-center mb-3">
         <div class="text-start">
           <h2 class="text-center show_title m-0">{{ appartment.title }}</h2>
@@ -212,15 +219,19 @@ export default {
           </div>
         </div>
 
-        <div class="col-12 col-md-6 mt-3 mt-md-0">
+        <div class="col-12 col-md-6 mt-3 mt-md-0 map-container">
           <TomTomMap class="map" v-if="appartment" :lat="appartment.lat" :long="appartment.long" />
           <div class="mb-2 opacity-75">{{ appartment.address }}</div>
         </div>
 
         <div class="col-12 p-3">
+
+          <!-- <h2 class="show_title mb-3 text-center">Cosa Troverai</h2> -->
           <div class="row align-items-start justify-content-center h-100">
             <div class="col-12 col-lg-6">
-              <div class="row">
+              <strong class="me-1">Spazi: </strong>
+
+              <div class="row mt-3">
                 <div class="col-6 px-2">
                   <div class="rooms_container">
                     <img src="/img/stanze.png" alt="" class="w-100 p-3" />
@@ -252,9 +263,10 @@ export default {
             </div>
 
             <div class="col-12 col-lg-6">
-              <div class="row flex-column justify-content-start">
+              <strong class="me-1">Servizi: </strong>
+
+              <div class="row flex-column justify-content-start mt-3">
                 <div class="col-12">
-                  <strong class="me-1">Servizi: </strong>
                   <ul class="row flex-md-wrap p-0 m-0">
                     <li v-for="service in appartment.services" class="col-6 d-flex align-items-center my-3 p-0">
                       <i :class="service.faIconClass" class="px-1 me-2 fs-4"></i><span class="service_label me-1">{{ service.label }}</span>
@@ -353,14 +365,20 @@ export default {
 </template>
 
 <style lang="scss">
+
+.btn-navigator {
+  top: 1%;
+  left: 1%;
+}
+
 .service-container {
   height: 300px;
 }
 
 .map {
   width: 100%;
-  height: 350px;
-  // aspect-ratio: 16/9;
+  min-height: 193px;
+  max-height: 362px;
 }
 
 .my-container {

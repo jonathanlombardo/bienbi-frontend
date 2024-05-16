@@ -221,7 +221,7 @@ export default {
       <div class="row">
         <div class="col p-3">
           <div class="p-3">
-            <label for="customRange1" class="form-label fw-bold">Raggio di ricerca: {{ radiusKm }} Km </label>
+            <label for="customRange1" class="form-label fw-bold  text-nowrap">Raggio di ricerca: {{ radiusKm }} Km </label>
           </div>
           <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000"
             @input="newFilter()" v-model="activeFilter.radius" />
@@ -260,7 +260,7 @@ export default {
         <div class="col p-3">
           <div class="servizi-img p-3">
             <img src="/img/mq.png" alt="casa" />
-            <label for="square_meters" class="form-label fw-bold m-2">Metri quadri</label>
+            <label for="square_meters" class="form-label fw-bold m-2 text-nowrap">Metri quadri</label>
           </div>
           <input type="number" class="form-control" min="30" max="1000" step="10" id="square_meters"
             @input="handleMetersInput()" v-model="activeFilter.square_meters" />
@@ -319,9 +319,15 @@ export default {
 #desktop-service-row {
   --serviceEl: v-bind(serviceN);
   --serviceHeight: 26px;
-  --serviceCol: 2;
+  --serviceCol: 1;
 
   height: calc(var(--serviceHeight) * (var(--serviceEl) / var(--serviceCol)) - (var(--serviceHeight) / var(--serviceCol)) + var(--serviceHeight));
+}
+
+@media only screen and (min-width: 767px) {
+  #desktop-service-row {
+    --serviceCol: 2;
+  }
 }
 
 @media only screen and (min-width: 1140px) {
