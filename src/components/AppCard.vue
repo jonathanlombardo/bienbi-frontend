@@ -7,14 +7,8 @@ export default {
 </script>
 
 <template>
-  <div class="col-lg-3 col-sm-6 col-12 my-4 px-5 px-sm-2">
-    <router-link
-      :to="{
-        name: 'appartmentDetails',
-        params: { appartmentSlug: appartment.slug },
-      }"
-      class="text-decoration-none"
-    >
+  <div >
+    
       <div class="card h-100 my_card">
         <div v-if="appartment.isSponsored" class="sponsorLabel"><i class="fa-solid fa-crown"></i> sponsorizzato</div>
         <img :src="appartment.imgUrl" class="card-img-top" alt="" />
@@ -29,7 +23,6 @@ export default {
           <div class="text-end"><strong>300€</strong> / notte</div>
         </div>
       </div>
-    </router-link>
   </div>
 </template>
 

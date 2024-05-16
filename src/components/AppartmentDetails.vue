@@ -17,8 +17,23 @@ export default {
     };
   },
 
+  computed: {
+    from() {
+      return this.$route.params.from;
+    },
+  },
+
   components: { TomTomMap, AppLoader },
   methods: {
+
+    getBackLink() {
+      if (this.from === 'from-homepage') {
+        return { name: 'home' };
+      } else {
+        return { name: 'ricerca-avanzata' };
+      }
+    },
+
     fetchAppartmentDetails(endpoint = api.baseUrl + "appartments/" + this.$route.params.appartmentSlug) {
       axios.get(endpoint).then((response) => {
         console.group("RISPOSTA API fetchAppartmentDetails");
@@ -185,8 +200,14 @@ export default {
     },
   },
 
+  mounted(){
+    window.scrollTo(0, 0);
+
+  },
+
   created() {
     this.fetchAppartmentDetails();
+
 
     // console.log(this.appartment);
   },
@@ -194,10 +215,10 @@ export default {
 </script>
 
 <template>
-  <section class="pb-4" v-if="appartment">
+  <section class="pb-4" v-if="appartment" id="appartment">
     <div class="container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
       
-      <router-link :to="{name: 'ricerca-avanzata'}">
+      <router-link :to="getBackLink()">
         <button class="btn my_btn btn-navigator position-absolute text-nowrap" type="button">
           <i class="fa-solid fa-arrow-left"></i>
         </button>
