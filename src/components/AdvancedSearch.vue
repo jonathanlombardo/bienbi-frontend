@@ -356,10 +356,6 @@ export default {
   background-color: rgb(243, 78, 57);
 }
 
-// .form-range::-webkit-slider-thumb:focus {
-// 	box-shadow: 0 0 0 3px rgba(243, 78, 57, 0.25);
-// }
-
 .form-range::-moz-range-thumb {
   background-color: #f34e39;
 }
@@ -372,10 +368,6 @@ export default {
 .form-range::-moz-range-thumb:active {
   background-color: #f34e39;
 }
-
-// .form-range::-moz-range-thumb:focus {
-// 	background-color: #f34e39;
-// }
 
 .servizi-img {
   display: flex;
