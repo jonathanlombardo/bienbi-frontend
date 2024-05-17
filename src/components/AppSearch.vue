@@ -66,7 +66,7 @@ export default {
   
   justify-content: space-around;
   margin-top: 0;
-  background-image: url("../../public/img/1950571-sfondo-astratto-di-linee-arancioni-gratuito-vettoriale.jpg");
+  background-image: url("../../img/1950571-sfondo-astratto-di-linee-arancioni-gratuito-vettoriale.jpg");
   background-size: cover ;
 }
 
