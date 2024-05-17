@@ -43,15 +43,35 @@ export default {
   },
   watch: {
     $route() {
+      let changes = [];
+
       this.services.forEach((service) => {
         const serviceId = "service" + service.id;
         // console.log(this.$route.query[serviceId]);
         if (this.$route.query[serviceId] === "true") {
           this.activeFilter[serviceId] = true;
+          // changes.push(key);
         } else {
           this.activeFilter[serviceId] = false;
+          // changes.push(key);
         }
       });
+
+      for (const [key, value] of Object.entries(this.$route.query)) {
+        if (value) {
+          this.activeFilter[key] = value;
+          changes.push(key);
+        }
+      }
+
+      console.log(changes);
+
+      for (const [key, value] of Object.entries(this.activeFilter)) {
+        if (!changes.includes(key)) {
+          this.activeFilter[key] = null;
+        }
+      }
+
       this.fetchSearchedAppartment();
     },
   },
@@ -72,7 +92,7 @@ export default {
       // this.fetchSearchedAppartment();
     },
 
-    newFilter() {
+    newFilter(delay = 800) {
       clearTimeout(this.clock);
 
       this.clock = setTimeout(() => {
@@ -88,7 +108,7 @@ export default {
         this.$route.query = query;
 
         // this.fetchSearchedAppartment();
-      }, 800);
+      }, delay);
     },
 
     fetchServices(endpoint = api.baseUrl + "services") {
@@ -215,17 +235,14 @@ export default {
 
     <div class="container">
       <div class="w-75 m-auto">
-        <TomTomSearchbox :placeholder="address" class="my-3" @returnAddress="updatePosition" :inputValue="address">
-        </TomTomSearchbox>
+        <TomTomSearchbox :placeholder="address" class="my-3" @returnAddress="updatePosition" :inputValue="address"> </TomTomSearchbox>
       </div>
       <div class="row">
         <div class="col p-3">
           <div class="p-3">
-            <label for="customRange1" class="form-label fw-bold  text-nowrap">Raggio di ricerca: {{ radiusKm }} Km
-            </label>
+            <label for="customRange1" class="form-label fw-bold text-nowrap">Raggio di ricerca: {{ radiusKm }} Km </label>
           </div>
-          <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000"
-            @input="newFilter()" v-model="activeFilter.radius" />
+          <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000" @input="newFilter()" v-model="activeFilter.radius" />
         </div>
 
         <div class="col p-3">
@@ -233,8 +250,7 @@ export default {
             <img src="/img/stanze.png" alt="casa" />
             <label for="rooms" class="form-label fw-bold m-2">Stanze</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="rooms" @input="handleRoomsInput('rooms')"
-            v-model="activeFilter.rooms" />
+          <input type="number" class="form-control" min="0" max="50" id="rooms" @input="handleRoomsInput('rooms')" v-model="activeFilter.rooms" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
@@ -243,8 +259,7 @@ export default {
             <img src="/img/letti.png" alt="casa" />
             <label for="beds" class="form-label fw-bold m-2">Letti</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="beds" @input="handleRoomsInput('beds')"
-            v-model="activeFilter.beds" />
+          <input type="number" class="form-control" min="0" max="50" id="beds" @input="handleRoomsInput('beds')" v-model="activeFilter.beds" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
@@ -253,8 +268,7 @@ export default {
             <img src="/img/bagni.png" alt="casa" />
             <label for="bathrooms" class="form-label fw-bold m-2">Bagni</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="bathrooms"
-            @input="handleRoomsInput('bathrooms')" v-model="activeFilter.bathrooms" />
+          <input type="number" class="form-control" min="0" max="50" id="bathrooms" @input="handleRoomsInput('bathrooms')" v-model="activeFilter.bathrooms" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
@@ -263,8 +277,7 @@ export default {
             <img src="/img/mq.png" alt="casa" />
             <label for="square_meters" class="form-label fw-bold m-2 text-nowrap">Metri quadri</label>
           </div>
-          <input type="number" class="form-control" min="30" max="1000" step="10" id="square_meters"
-            @input="handleMetersInput()" v-model="activeFilter.square_meters" />
+          <input type="number" class="form-control" min="30" max="1000" step="10" id="square_meters" @input="handleMetersInput()" v-model="activeFilter.square_meters" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 30</div>
         </div>
 
@@ -273,8 +286,7 @@ export default {
         </div> -->
 
         <div class="col-12 p-3">
-          <button class="btn my_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-            aria-expanded="false" aria-controls="collapseExample">Servizi</button>
+          <button class="btn my_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Servizi</button>
 
           <div class="collapse mt-4" id="collapseExample">
             <div class="card card-body my-card">
@@ -282,8 +294,7 @@ export default {
               <div class="row flex-column my-3" id="desktop-service-row">
                 <div v-for="service of services" class="col-auto">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" :id="'service' + service.id"
-                      @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
+                    <input class="form-check-input" type="checkbox" :id="'service' + service.id" @change="handleServiceChange(service.id)" :checked="activeFilter['service' + service.id]" />
                     <!-- icona servizi  -->
                     <label class="form-check-label text-nowrap" :for="'service' + service.id">
                       <div class="icon-container"><i :class="service.faIconClass" class="me-2"></i></div>
@@ -301,16 +312,18 @@ export default {
 
   <section v-if="store.searchedAppartments" class="my-5">
     <div class="container">
-      <h2 v-if="store.searchedAppartments.length" class="text-center mb-5">Risultati nelle vicinanze di {{ address ??
-        defaultAddress }}</h2>
+      <h2 v-if="store.searchedAppartments.length" class="text-center mb-5">Risultati nelle vicinanze di {{ address ?? defaultAddress }}</h2>
       <h2 v-else class="text-center mb-5">Nessun risultato con i criteri inseriti</h2>
       <div class="row g-4">
-        <router-link class="col-lg-3 col-sm-6 col-12 my-4 px-5 px-sm-2" v-for="appartment in store.searchedAppartments"
+        <router-link
+          class="col-lg-3 col-sm-6 col-12 my-4 px-5 px-sm-2"
+          v-for="appartment in store.searchedAppartments"
           :to="{
             name: 'appartmentDetails',
             params: { appartmentSlug: appartment.slug, from: 'from-ricerca-avanzata' },
-          }">
-          <AppCard  :appartment="appartment"></AppCard>
+          }"
+        >
+          <AppCard :appartment="appartment"></AppCard>
         </router-link>
       </div>
       <CollectionPaginator v-if="appartmentCollection" :collection="appartmentCollection" @linkClicked="changePage" />
