@@ -242,7 +242,7 @@ export default {
           <div class="p-3">
             <label for="customRange1" class="form-label fw-bold text-nowrap">Raggio di ricerca: {{ radiusKm }} Km </label>
           </div>
-          <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="0" max="100000" step="5000" @input="newFilter()" v-model="activeFilter.radius" />
+          <input type="range" class="form-range form-range-moz mt-3" id="customRange1" min="5000" max="100000" step="5000" @input="newFilter()" v-model="activeFilter.radius" />
         </div>
 
         <div class="col p-3">
@@ -250,7 +250,7 @@ export default {
             <img src="/img/stanze.png" alt="casa" />
             <label for="rooms" class="form-label fw-bold m-2">Stanze</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="rooms" @input="handleRoomsInput('rooms')" v-model="activeFilter.rooms" />
+          <input type="number" class="form-control" min="1" max="50" id="rooms" @input="handleRoomsInput('rooms')" v-model="activeFilter.rooms" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
@@ -259,7 +259,7 @@ export default {
             <img src="/img/letti.png" alt="casa" />
             <label for="beds" class="form-label fw-bold m-2">Letti</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="beds" @input="handleRoomsInput('beds')" v-model="activeFilter.beds" />
+          <input type="number" class="form-control" min="1" max="50" id="beds" @input="handleRoomsInput('beds')" v-model="activeFilter.beds" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
@@ -268,7 +268,7 @@ export default {
             <img src="/img/bagni.png" alt="casa" />
             <label for="bathrooms" class="form-label fw-bold m-2">Bagni</label>
           </div>
-          <input type="number" class="form-control" min="0" max="50" id="bathrooms" @input="handleRoomsInput('bathrooms')" v-model="activeFilter.bathrooms" />
+          <input type="number" class="form-control" min="1" max="50" id="bathrooms" @input="handleRoomsInput('bathrooms')" v-model="activeFilter.bathrooms" />
           <div class="invalid-feedback text-black fw-bold">Inserisci un numero intero > 0</div>
         </div>
 
