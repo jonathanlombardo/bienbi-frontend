@@ -14,7 +14,7 @@ export default {
       <div class="card-body d-flex flex-column">
         <h5 class="card-title pb-3">{{ appartment.title }}</h5>
         <span class="card-text">{{ appartment.address }}</span>
-        <div class="mt-2" v-if="appartment.distance"><strong>Distanza: </strong>{{ appartment.distance }} m</div>
+        <div class="mt-2" v-if="appartment.distance"><strong>Distanza: </strong>{{ appartment.distance >= 1000 ? Math.round((appartment.distance / 1000) * 10) / 10 + " km" : appartment.distance + " m" }}</div>
         <div class="mb-4">
           <span v-for="service in appartment.services" class="d-inline-block mt-2 me-2"><i :class="service.faIconClass"></i></span>
         </div>
