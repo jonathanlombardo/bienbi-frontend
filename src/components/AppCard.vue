@@ -27,7 +27,7 @@ export default {
 
 <style lang="scss">
 span {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .card-title {
@@ -44,6 +44,7 @@ span {
   transition: transform 0.5s;
   cursor: pointer;
   position: relative;
+  background-color: #f3f3f3;
 
   &:hover {
     transform: scale(1.1);
@@ -57,6 +58,7 @@ span {
     background-color: #0000003e;
     font-size: 0.8rem;
     color: #ffb30e;
+    font-weight: bold;
   }
 }
 
