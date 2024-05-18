@@ -80,12 +80,24 @@ export default {
     changePage(url, page) {
       const query = {};
       for (const [key, value] of Object.entries(this.activeFilter)) {
-        query[key] = value;
+        if (value) {
+          query[key] = value;
+        }
       }
       query.lat = query.lat ?? this.defaultLat;
       query.long = query.long ?? this.defaultLong;
       query.radius = query.radius ?? this.defaultRadius;
-      query.page = page;
+      if (page == "&laquo; Previous") {
+        query.page = parseInt(this.$route.query.page) - 1;
+      } else if (page == "Next &raquo;") {
+        if (this.$route.query.page) {
+          query.page = parseInt(this.$route.query.page) + 1;
+        } else {
+          query.page = 2;
+        }
+      } else {
+        query.page = page;
+      }
 
       this.$router.push({ name: "ricerca-avanzata", query: query });
       this.$route.query = query;

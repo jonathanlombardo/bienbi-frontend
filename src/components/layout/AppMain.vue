@@ -1,7 +1,7 @@
 <script>
 import AppSearch from "../AppSearch.vue";
 import AppCard from "../AppCard.vue";
-import AppLoader from "../AppLoader.vue"
+import AppLoader from "../AppLoader.vue";
 import axios from "axios";
 import { api, store } from "../../store";
 import CollectionPaginator from "../CollectionPaginator.vue";
@@ -24,9 +24,19 @@ export default {
 
   methods: {
     changePage(endpoint, page) {
-      const query = {
-        page,
-      };
+      const query = {};
+
+      if (page == "&laquo; Previous") {
+        query.page = parseInt(this.$route.query.page) - 1;
+      } else if (page == "Next &raquo;") {
+        if (this.$route.query.page) {
+          query.page = parseInt(this.$route.query.page) + 1;
+        } else {
+          query.page = 2;
+        }
+      } else {
+        query.page = page;
+      }
 
       this.$router.push({ name: "home", query: query });
       this.$route.query = query;
@@ -63,13 +73,16 @@ export default {
     <div class="container">
       <div class="row g-4 pt-4" v-if="store.sponsoredAppartments">
         <h1>Potrebbero interessarti...</h1>
-        <router-link class="col-lg-3 col-sm-6 col-12 my-4 px-5 px-sm-2"  v-for="appartment in store.sponsoredAppartments"  :to="{
-          name: 'appartmentDetails',
-          params: { appartmentSlug: appartment.slug, from: 'from-homepage' },
-        }" >
+        <router-link
+          class="col-lg-3 col-sm-6 col-12 my-4 px-5 px-sm-2"
+          v-for="appartment in store.sponsoredAppartments"
+          :to="{
+            name: 'appartmentDetails',
+            params: { appartmentSlug: appartment.slug, from: 'from-homepage' },
+          }"
+        >
           <AppCard :appartment="appartment"></AppCard>
         </router-link>
-
       </div>
       <AppLoader v-else></AppLoader>
 
