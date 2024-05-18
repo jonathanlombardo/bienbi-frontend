@@ -463,6 +463,7 @@ export default {
   border-radius: 50%;
   width: 65px;
   height: 65px;
+  z-index: 3;
 }
 
 .font_size {
