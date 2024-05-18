@@ -17,6 +17,8 @@ export default {
       this.long = address.long;
       this.address = address.address;
       this.searchError = false;
+
+      this.handleSearchBtn();
     },
 
     handleSearchBtn() {
@@ -25,6 +27,9 @@ export default {
       } else {
         this.searchError = true;
       }
+    },
+    emitNoAddress() {
+      this.searchError = true;
     },
   },
 };
@@ -48,10 +53,10 @@ export default {
           <form action="">
             <div class="input-group my-5 d-flex flex-column">
               <!-- barra di ricerca -->
-              <TomTomSearchbox @returnAddress="savePosition" class="search-box" :class="{ invalid: searchError }"></TomTomSearchbox>
+              <TomTomSearchbox @returnAddress="savePosition" @noaddress="emitNoAddress()" class="search-box" :class="{ invalid: searchError }"></TomTomSearchbox>
               <p class="search-box-fb mb-0" :class="{ active: searchError }">Seleziona uno tra i risultati suggeriti</p>
 
-              <div @click="handleSearchBtn()" class="rounded btn my_btn w-md-25 mt-3">Cerca</div>
+              <!-- <div @click="handleSearchBtn()" class="rounded btn my_btn w-md-25 mt-3">Cerca</div> -->
             </div>
           </form>
         </div>
@@ -63,11 +68,11 @@ export default {
 <style lang="scss" scoped>
 .jumbo {
   display: flex;
-  
+
   justify-content: space-around;
   margin-top: 0;
   background-image: url("../../img/1950571-sfondo-astratto-di-linee-arancioni-gratuito-vettoriale.jpg");
-  background-size: cover ;
+  background-size: cover;
 }
 
 .jumbo img {

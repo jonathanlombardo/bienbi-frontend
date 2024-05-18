@@ -24,7 +24,7 @@ export default {
     },
   },
 
-  emits: ["returnAddress"],
+  emits: ["returnAddress", "noaddress"],
 
   methods: {
     emitAddress(event) {
@@ -36,6 +36,8 @@ export default {
       });
       // console.log(res.position)
     },
+
+    noAddress() {},
   },
 
   mounted() {
@@ -51,14 +53,17 @@ export default {
     searchBoxContainer.style.marginTop = 0;
 
     ttSearchBox.on("tomtom.searchbox.resultselected", this.emitAddress);
+    searchBoxInput.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        this.$emit("noaddress");
+      }
+    });
   },
 };
 </script>
 
 <template>
-  <div id="tomtom-searchbox" class="w-100">
-    
-  </div>
+  <div id="tomtom-searchbox" class="w-100"></div>
 </template>
 
 <style lang="scss" scoped></style>
