@@ -312,7 +312,7 @@ export default {
       </div>
 
       <!-- offcanvas -->
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas offcanvas-end overflow-y-auto" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header justify-content-between">
           <h5 class="offcanvas-title" id="offcanvasExampleLabel">Invia un messaggio al proprietario</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
