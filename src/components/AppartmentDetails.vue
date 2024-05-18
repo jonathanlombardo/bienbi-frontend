@@ -214,8 +214,14 @@ export default {
 <template>
   <section class="pb-4" v-if="appartment" id="appartment">
     <div class="container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
-      <router-link :to="getBackLink()">
+      <router-link :to="getBackLink()" class="d-none d-md-inline">
         <button class="btn my_btn btn-navigator position-absolute text-nowrap" type="button">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+      </router-link>
+
+      <router-link :to="getBackLink()" class="d-md-none">
+        <button class="btn my_btn btn-navigator text-nowrap m-4" type="button">
           <i class="fa-solid fa-arrow-left"></i>
         </button>
       </router-link>
