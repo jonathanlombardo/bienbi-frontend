@@ -2,7 +2,7 @@
 import axios from "axios";
 import { api } from "../store";
 import TomTomMap from "./TomTomMap.vue";
-import AppLoader from "./AppLoader.vue"
+import AppLoader from "./AppLoader.vue";
 
 export default {
   data() {
@@ -25,12 +25,11 @@ export default {
 
   components: { TomTomMap, AppLoader },
   methods: {
-
     getBackLink() {
-      if (this.from === 'from-homepage') {
-        return { name: 'home' };
+      if (this.from === "from-homepage") {
+        return { name: "home" };
       } else {
-        return { name: 'ricerca-avanzata' };
+        return { name: "ricerca-avanzata" };
       }
     },
 
@@ -200,14 +199,12 @@ export default {
     },
   },
 
-  mounted(){
+  mounted() {
     window.scrollTo(0, 0);
-
   },
 
   created() {
     this.fetchAppartmentDetails();
-
 
     // console.log(this.appartment);
   },
@@ -217,7 +214,6 @@ export default {
 <template>
   <section class="pb-4" v-if="appartment" id="appartment">
     <div class="container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
-      
       <router-link :to="getBackLink()">
         <button class="btn my_btn btn-navigator position-absolute text-nowrap" type="button">
           <i class="fa-solid fa-arrow-left"></i>
@@ -235,8 +231,8 @@ export default {
       <!-- <TomTomMap class="map mb-4" v-if="appartment" :lat="appartment.lat" :long="appartment.long" /> -->
       <div class="row flex-column flex-md-row">
         <div class="col-12 col-md-6">
-          <div class="">
-            <img :src="appartment ? appartment.imgUrl : ''" alt="" class="appartment-img" />
+          <div class="img-container h-100">
+            <img :src="appartment ? appartment.imgUrl : ''" alt="" class="appartment-img h-100" />
           </div>
         </div>
 
@@ -246,7 +242,6 @@ export default {
         </div>
 
         <div class="col-12 p-3">
-
           <!-- <h2 class="show_title mb-3 text-center">Cosa Troverai</h2> -->
           <div class="row align-items-start justify-content-center h-100">
             <div class="col-12 col-lg-6">
@@ -377,7 +372,7 @@ export default {
       </div>
     </div>
   </section>
-  
+
   <section class="pb-4" v-else>
     <div class="container my-loading-container m-auto p-0 p-md-1 vw-100 my-container rounded position-relative overflow-y-scroll overflow-x-hidden">
       <AppLoader></AppLoader>
@@ -386,6 +381,9 @@ export default {
 </template>
 
 <style lang="scss">
+.img-container {
+  max-height: 370px;
+}
 
 .btn-navigator {
   top: 1%;
@@ -408,9 +406,7 @@ export default {
   padding: 15px;
 }
 
-
-
-.my-loading-container{
+.my-loading-container {
   height: 822px;
   display: flex;
   justify-content: center;
@@ -428,7 +424,7 @@ export default {
 .appartment-img {
   border-radius: 10px;
   width: 100%;
-  aspect-ratio: 16/9;
+  max-height: 370px;
   object-fit: cover;
   object-position: center;
 }

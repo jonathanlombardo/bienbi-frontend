@@ -48,6 +48,7 @@ export default {
 <style lang="scss" scoped>
 #map {
   width: 100%;
-  aspect-ratio: 1;
+  height: 370px;
+  // aspect-ratio: 1;
 }
 </style>
