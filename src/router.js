@@ -6,10 +6,11 @@ import AppartmentDetails from "./components/AppartmentDetails.vue";
 
 const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
-    // always scroll 10px above the element #main
-    return {
-      // 10px above the element
-      top: 1,
+    if (to.name !== from.name) {
+      return {
+        top: 0,
+        behavior: "instant",
+      };
     }
   },
   history: createWebHistory(),
